@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, fromEvent } from 'rxjs';
-import {  } from 'rxjs/operator';
+import { map, tap, distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import {  } from 'rxjs/internal/operators/distinctUntilChanged';
 
 @Component({
   selector: 'app-search-bars',
@@ -11,8 +12,8 @@ import {  } from 'rxjs/operator';
 export class SearchBarsComponent implements OnInit {
   @Input() type: string;
   form: FormGroup;
-  optObservable: Observable<any>;
-  locObservable: Observable<any>;
+  options = [];
+  locations = [];
 
   constructor(private fb: FormBuilder) { }
 
@@ -22,7 +23,23 @@ export class SearchBarsComponent implements OnInit {
       location: ['']
     });
 
-    fromEvent(document.getElementById('src'), 'input');
+    fromEvent(document.getElementById('src'), 'input').pipe(
+      map((val: any) => val.target.value),
+      map(val => val.trim().toLowerCase()),
+      distinctUntilChanged(),
+      debounceTime(750),
+      tap(val => console.log(val)),
+    ).subscribe(val => this.options = val,
+    err => console.log(err));
+
+    fromEvent(document.getElementById('loc'), 'input').pipe(
+      map((val: any) => val.target.value),
+      map(val => val.trim().toLowerCase()),
+      distinctUntilChanged(),
+      debounceTime(750),
+      tap(val => console.log(val)),
+    ).subscribe(val => this.locations = val,
+    err => console.log(err));
   }
 
 }
