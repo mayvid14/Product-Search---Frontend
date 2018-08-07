@@ -52,7 +52,18 @@ export class SearchBarsComponent implements OnInit {
       tap(val => console.log(val)),
     ).subscribe();*/
 
-    this.type === 'product' ? this.service.getAllProducts().subscribe((val: any[]) => this.temp = val) : this.temp = [] ;
+    switch (this.type) {
+      case 'product':
+      this.service.getAllProducts().subscribe((val: any[]) => this.temp = val);
+      break;
+      case 'merchant':
+      break;
+      case 'category':
+      break;
+      default:
+      this.temp = [];
+      break;
+    }
   }
 
 }
