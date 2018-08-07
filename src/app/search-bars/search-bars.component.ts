@@ -29,18 +29,14 @@ export class SearchBarsComponent implements OnInit {
       map(val => val.trim().toLowerCase()),
       distinctUntilChanged(),
       debounceTime(750),
-      // switchMap(val => val = this.service.getProducts(val)),
-      // filter(val => this.contain(this.temp, val))
       tap(val => console.log(val)),
     ).subscribe(val => {
       this.options.splice(0);
       this.temp.forEach(e => {
-        // console.log(e.name.toLowerCase().indexOf(val));
         if (e.name.toLowerCase().indexOf(val) >= 0) {
           this.options.push(e);
         }
       });
-      // console.log(this.temp, this.options);
       this.options.splice(5);
     });
 
