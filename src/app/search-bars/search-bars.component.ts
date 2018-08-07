@@ -10,8 +10,8 @@ import { Observable, fromEvent } from 'rxjs';
 export class SearchBarsComponent implements OnInit {
   @Input() type: string;
   form: FormGroup;
-  optObservable: Observable<any>;
-  locObservable: Observable<any>;
+  options = [];
+  locations = [];
 
   constructor(private fb: FormBuilder) { }
 
