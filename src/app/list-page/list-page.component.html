@@ -5,7 +5,26 @@
     <app-search-bars [type]="type" fxFlex></app-search-bars>
   </mat-toolbar>
 </div>
-{{products | json}}
+<div fxLyout="row" fxLayoutGap="10%" fxLayoutAlign="center">
+  <div fxFlex="80%">
+    <div fxLyout="row" fxLayoutGap="5%">
+        <h2 class="title">{{head}}</h2>
+        <span fxFlex></span>
+        <h3 class="sub-heading-2" (click)="ascending = !ascending">
+          Price <mat-icon *ngIf="ascending">keyboard_arrow_up</mat-icon>
+          <mat-icon *ngIf="!ascending">keyboard_arrow_down</mat-icon>
+        </h3>
+    </div>
+    <div fxLyout="row">
+      <mat-grid-list rowHeight="1:2" cols="5" gutterSize="1px">
+        <mat-grid-tile *ngFor="let product of products">
+          <app-product-card [item]="product"></app-product-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+        {{products | json}}
+    </div>
+  </div>
+</div>
 <div fxLyout="row">
   <mat-toolbar>
     <!-- TODO: Add footer -->

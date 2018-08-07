@@ -10,15 +10,22 @@ import { SearchingService } from '../searching.service';
 })
 export class ListPageComponent implements OnInit {
   type: string;
+  head: string;
   products = [];
+  ascending: Boolean;
 
   constructor(private route: ActivatedRoute, private service: SearchingService) { }
 
   ngOnInit() {
     this.route.url.subscribe(val => {
       this.type = val[0].path;
-      this.service.getMerchantProducts(val[1].path).subscribe((el: any[]) => this.products = el);
+      this.head = val[1].path;
+      this.service.getMerchantProducts(this.head).subscribe((el: any[]) => {
+        this.products = el[0];
+        this.head = el[1];
+      });
     });
+    this.ascending = true;
     // console.log(this.route);
   }
 

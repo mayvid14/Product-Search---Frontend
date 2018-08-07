@@ -29,8 +29,11 @@ export class SearchingService {
   getMerchantProducts(name: string) {
     return this.http.get(this.url.prefix + this.url.merchantByName + name).pipe(
       flatMap((val: any) => {
-        console.log(val.products);
-        return of(val.products);
+        console.log(val);
+        return forkJoin(
+          of(val.products),
+          of(val.name)
+        );
       })
     );
   }

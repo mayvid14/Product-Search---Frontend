@@ -1,0 +1,12 @@
+<mat-card>
+  <img [src]="'https://goo.gl/uVkkWs'" [alt]="item.name" mat-card-image>
+  <mat-card-content>
+    <span>{{item.feeds[0]?.quantity || 0}} in stock</span>
+    <div *ngIf="item.feeds.length > 0">
+      <span>{{item.feeds[0].salePrice | currency}}</span>
+      <span fxFlex></span>
+      <span class="strike">{{item.feeds[0].price | currency}}</span>
+    </div>
+    <p>{{item.name}}</p>
+  </mat-card-content>
+</mat-card>

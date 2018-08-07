@@ -6,7 +6,11 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatAutocompleteModule,
-  MatChipsModule
+  MatChipsModule,
+  MatIconModule,
+  MatGridListModule,
+  MatCardModule,
+  MatBadgeModule
 } from '@angular/material';
 
 @NgModule({
@@ -18,6 +22,10 @@ import {
     MatInputModule,
     MatAutocompleteModule,
     MatChipsModule,
+    MatIconModule,
+    MatGridListModule,
+    MatCardModule,
+    MatBadgeModule
   ],
   exports: [
     MatButtonModule,
@@ -25,7 +33,11 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatChipsModule
+    MatChipsModule,
+    MatIconModule,
+    MatGridListModule,
+    MatCardModule,
+    MatBadgeModule
   ],
   declarations: []
 })

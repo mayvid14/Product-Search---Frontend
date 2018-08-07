@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MerchantListComponent } from './merchant-list/merchant-list.component';
 import { ListPageComponent } from './list-page/list-page.component';
 import { HomeComponent } from './home/home.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { StrikePipe } from './strike.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HomeComponent } from './home/home.component';
     SearchBarsComponent,
     MerchantListComponent,
     ListPageComponent,
-    HomeComponent
+    HomeComponent,
+    ProductCardComponent,
+    StrikePipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'product-search' }),
