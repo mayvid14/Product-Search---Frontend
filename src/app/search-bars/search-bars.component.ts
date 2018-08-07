@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, fromEvent } from 'rxjs';
-import { map, tap, distinctUntilChanged, debounceTime } from 'rxjs/operators';
-import {  } from 'rxjs/internal/operators/distinctUntilChanged';
+import { map, tap, distinctUntilChanged, debounceTime, switchMap, filter } from 'rxjs/operators';
+import { SearchingService } from '../searching.service';
 
 @Component({
   selector: 'app-search-bars',
@@ -14,8 +14,9 @@ export class SearchBarsComponent implements OnInit {
   form: FormGroup;
   options = [];
   locations = [];
+  temp = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private service: SearchingService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -28,18 +29,30 @@ export class SearchBarsComponent implements OnInit {
       map(val => val.trim().toLowerCase()),
       distinctUntilChanged(),
       debounceTime(750),
+      // switchMap(val => val = this.service.getProducts(val)),
+      // filter(val => this.contain(this.temp, val))
       tap(val => console.log(val)),
-    ).subscribe(val => this.options = val,
-    err => console.log(err));
+    ).subscribe(val => {
+      this.options.splice(0);
+      this.temp.forEach(e => {
+        // console.log(e.name.toLowerCase().indexOf(val));
+        if (e.name.toLowerCase().indexOf(val) >= 0) {
+          this.options.push(e);
+        }
+      });
+      // console.log(this.temp, this.options);
+      this.options.splice(5);
+    });
 
-    fromEvent(document.getElementById('loc'), 'input').pipe(
+    /*fromEvent(document.getElementById('loc'), 'input').pipe(
       map((val: any) => val.target.value),
       map(val => val.trim().toLowerCase()),
       distinctUntilChanged(),
       debounceTime(750),
       tap(val => console.log(val)),
-    ).subscribe(val => this.locations = val,
-    err => console.log(err));
+    ).subscribe();*/
+
+    this.type === 'product' ? this.service.getAllProducts().subscribe((val: any[]) => this.temp = val) : this.temp = [] ;
   }
 
 }
