@@ -12,12 +12,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { MerchantListComponent } from './merchant-list/merchant-list.component';
+import { ListPageComponent } from './list-page/list-page.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchBarsComponent,
-    MerchantListComponent
+    MerchantListComponent,
+    ListPageComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'product-search' }),

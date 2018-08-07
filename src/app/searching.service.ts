@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { URLs } from './urls';
 import { HttpClient } from '@angular/common/http';
+import { forkJoin, of } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +24,14 @@ export class SearchingService {
 
   getAllMerchants() {
     return this.http.get(this.url.prefix + this.url.allMerchants);
+  }
+
+  getMerchantProducts(name: string) {
+    return this.http.get(this.url.prefix + this.url.merchantByName + name).pipe(
+      flatMap((val: any) => {
+        console.log(val.products);
+        return of(val.products);
+      })
+    );
   }
 }

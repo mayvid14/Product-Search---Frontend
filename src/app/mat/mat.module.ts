@@ -17,7 +17,7 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatChipsModule
+    MatChipsModule,
   ],
   exports: [
     MatButtonModule,

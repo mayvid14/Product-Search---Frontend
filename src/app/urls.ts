@@ -3,4 +3,5 @@ export class URLs {
     getProduct = '/v2/product/productname/';
     allProducts = '/v2/product';
     allMerchants = '/v2/merchant';
+    merchantByName = '/v2/merchant/displayName/';
 }
