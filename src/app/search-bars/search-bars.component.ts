@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, fromEvent } from 'rxjs';
-import {  } from 'rxjs/operator';
 
 @Component({
   selector: 'app-search-bars',
