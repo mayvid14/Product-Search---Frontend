@@ -5,7 +5,8 @@ import {
   MatToolbarModule,
   MatFormFieldModule,
   MatInputModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatChipsModule
 } from '@angular/material';
 
 @NgModule({
@@ -15,14 +16,16 @@ import {
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatChipsModule
   ],
   exports: [
     MatButtonModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatChipsModule
   ],
   declarations: []
 })

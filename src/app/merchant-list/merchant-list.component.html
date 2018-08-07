@@ -1,3 +1,5 @@
-<p>
-  merchant-list works!
-</p>
+<mat-chip-list>
+  <mat-chip *ngFor="let mercs of merchants" selected (click)="goto(mercs.name)" color="none">
+    {{mercs.displayName}}
+  </mat-chip>
+</mat-chip-list>

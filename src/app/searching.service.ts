@@ -19,4 +19,8 @@ export class SearchingService {
   getAllProducts() {
     return this.http.get(this.url.prefix + this.url.allProducts);
   }
+
+  getAllMerchants() {
+    return this.http.get(this.url.prefix + this.url.allMerchants);
+  }
 }

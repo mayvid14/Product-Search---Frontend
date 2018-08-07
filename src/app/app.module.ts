@@ -11,11 +11,13 @@ import { SearchBarsComponent } from './search-bars/search-bars.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { MerchantListComponent } from './merchant-list/merchant-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchBarsComponent
+    SearchBarsComponent,
+    MerchantListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'product-search' }),
