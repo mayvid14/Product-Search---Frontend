@@ -32,4 +32,12 @@ export class ProductCardComponent implements OnInit {
     return false;
   }
 
+  isAvailable() {
+    return this.item.feeds.length > 0 ? '' : 'unavailable';
+  }
+
+  redirect() {
+    window.location.href = '/product/' + encodeURI(this.item.name);
+  }
+
 }

@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card [ngClass]="isAvailable()" (click)="redirect()">
   <img [src]="'https://goo.gl/uVkkWs'" [alt]="item.name" mat-card-image>
   <mat-card-content>
     <span>{{item.feeds[0]?.quantity || 0}} in stock</span>

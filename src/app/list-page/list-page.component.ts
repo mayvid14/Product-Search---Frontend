@@ -14,6 +14,7 @@ export class ListPageComponent implements OnInit {
   products = [];
   ascending: Boolean;
   stores = [];
+  show: Boolean;
 
   constructor(private route: ActivatedRoute, private service: SearchingService) { }
 
@@ -28,6 +29,7 @@ export class ListPageComponent implements OnInit {
       });
     });
     this.ascending = true;
+    this.show = false;
     // console.log(this.route);
   }
 

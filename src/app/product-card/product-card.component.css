@@ -2,3 +2,10 @@
     text-decoration: line-through;
     opacity: 0.5;
 }
+
+.unavailable{
+    opacity: 0.5;
+}
+mat-card{
+    cursor: pointer;
+}
