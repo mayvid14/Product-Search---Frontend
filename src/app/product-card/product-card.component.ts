@@ -8,11 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProductCardComponent implements OnInit {
   @Input() item: any;
   @Input() stores: any;
-  count = 0;
+  count: number;
 
   constructor() { }
 
   ngOnInit() {
+    this.count = 0;
     this.stores.forEach(store => {
       const feedArr = store.feeds;
       feedArr.forEach(storeFeed => {
@@ -24,12 +25,13 @@ export class ProductCardComponent implements OnInit {
   }
 
   isAnItemFeed(storeFeed: any) {
+    let found = false;
     this.item.feeds.forEach(itemFeed => {
       if (itemFeed.id === storeFeed.id) {
-        return true;
+        found = true;
       }
     });
-    return false;
+    return found;
   }
 
   isAvailable() {
@@ -38,6 +40,35 @@ export class ProductCardComponent implements OnInit {
 
   redirect() {
     window.location.href = '/product/' + encodeURI(this.item.name);
+  }
+
+  getQuantity() {
+    const feedArray = this.item.feeds;
+    let quantity = 0;
+    feedArray.forEach(feed => quantity += feed.quantity);
+    return quantity;
+  }
+
+  salePriceAndPriceInStore() {
+    let minSP = Number.POSITIVE_INFINITY;
+    let minPrice = Number.POSITIVE_INFINITY;
+    this.stores.forEach(store => {
+      const feedArr = store.feeds;
+      feedArr.forEach(storeFeed => {
+        this.item.feeds.forEach(itemFeed => {
+          if (itemFeed.id === storeFeed.id) {
+            const SP = itemFeed.salePrice;
+            const P = itemFeed.price;
+            minSP = SP < minSP ? SP : minSP;
+            minPrice = P < minPrice ? P : minPrice;
+          }
+        });
+      });
+    });
+    return {
+      salePrice : minSP,
+      price: minPrice
+    };
   }
 
 }

@@ -1,11 +1,11 @@
 <mat-card [ngClass]="isAvailable()" (click)="redirect()">
   <img [src]="'https://goo.gl/uVkkWs'" [alt]="item.name" mat-card-image>
   <mat-card-content>
-    <span>{{item.feeds.length}} in stock</span>
+    <span>{{getQuantity()}} in stock</span>
     <div *ngIf="item.feeds.length > 0">
-      <span>{{item.feeds[0].salePrice | currency}}</span>
+      <span>{{salePriceAndPriceInStore().salePrice | currency}}</span>
       <span fxFlex></span>
-      <span class="strike">{{item.feeds[0].price | currency}}</span>
+      <span class="strike">{{salePriceAndPriceInStore().price | currency}}</span>
     </div>
     <p>{{item.name}}</p>
     <div>
