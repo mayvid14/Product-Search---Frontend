@@ -15,7 +15,8 @@ import { MerchantListComponent } from './merchant-list/merchant-list.component';
 import { ListPageComponent } from './list-page/list-page.component';
 import { HomeComponent } from './home/home.component';
 import { ProductCardComponent } from './product-card/product-card.component';
-import { StrikePipe } from './strike.pipe';
+import { PriceSortPipe } from './price-sort.pipe';
+import { ShowAvailablePipe } from './show-available.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { StrikePipe } from './strike.pipe';
     ListPageComponent,
     HomeComponent,
     ProductCardComponent,
-    StrikePipe
+    PriceSortPipe,
+    ShowAvailablePipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'product-search' }),

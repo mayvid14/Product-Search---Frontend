@@ -18,7 +18,7 @@
     </div>
     <div fxLyout="row">
       <mat-grid-list rowHeight="1:2" cols="5" gutterSize="5px">
-        <mat-grid-tile *ngFor="let product of products">
+        <mat-grid-tile *ngFor="let product of products | priceSort : ascending | showAvailable : show">
           <app-product-card [item]="product" [stores]="stores"></app-product-card>
         </mat-grid-tile>
       </mat-grid-list>
