@@ -8,5 +8,9 @@
       <span class="strike">{{item.feeds[0].price | currency}}</span>
     </div>
     <p>{{item.name}}</p>
+    <div>
+      <span fxFlex></span>
+      <span>{{count === 0 ? 'No' : count}} store{{count > 1 ? 's' : ''}}</span>
+    </div>
   </mat-card-content>
 </mat-card>

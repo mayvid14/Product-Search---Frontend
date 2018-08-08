@@ -32,7 +32,8 @@ export class SearchingService {
         console.log(val);
         return forkJoin(
           of(val.products),
-          of(val.name)
+          of(val.name),
+          of(val.stores)
         );
       })
     );

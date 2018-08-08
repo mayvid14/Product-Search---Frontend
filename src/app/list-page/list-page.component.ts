@@ -13,6 +13,7 @@ export class ListPageComponent implements OnInit {
   head: string;
   products = [];
   ascending: Boolean;
+  stores = [];
 
   constructor(private route: ActivatedRoute, private service: SearchingService) { }
 
@@ -23,6 +24,7 @@ export class ListPageComponent implements OnInit {
       this.service.getMerchantProducts(this.head).subscribe((el: any[]) => {
         this.products = el[0];
         this.head = el[1];
+        this.stores = el[2];
       });
     });
     this.ascending = true;
