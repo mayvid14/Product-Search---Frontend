@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { GetPriceService } from '../get-price.service';
 
 @Component({
   selector: 'app-product-card',
@@ -10,7 +11,7 @@ export class ProductCardComponent implements OnInit {
   @Input() stores: any;
   count: number;
 
-  constructor() { }
+  constructor(private service: GetPriceService) { }
 
   ngOnInit() {
     this.count = 0;
@@ -50,25 +51,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   salePriceAndPriceInStore() {
-    let minSP = Number.POSITIVE_INFINITY;
-    let minPrice = Number.POSITIVE_INFINITY;
-    this.stores.forEach(store => {
-      const feedArr = store.feeds;
-      feedArr.forEach(storeFeed => {
-        this.item.feeds.forEach(itemFeed => {
-          if (itemFeed.id === storeFeed.id) {
-            const SP = itemFeed.salePrice;
-            const P = itemFeed.price;
-            minSP = SP < minSP ? SP : minSP;
-            minPrice = P < minPrice ? P : minPrice;
-          }
-        });
-      });
-    });
-    return {
-      salePrice : minSP,
-      price: minPrice
-    };
+    return this.service.salePriceAndPriceInStore(this.stores, this.item);
   }
 
 }

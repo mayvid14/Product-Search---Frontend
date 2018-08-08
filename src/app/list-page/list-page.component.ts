@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { SearchingService } from '../searching.service';
+import { PriceSortPipe } from 'src/app/price-sort.pipe';
 
 @Component({
   selector: 'app-list-page',
@@ -16,7 +17,7 @@ export class ListPageComponent implements OnInit {
   stores = [];
   show: Boolean;
 
-  constructor(private route: ActivatedRoute, private service: SearchingService) { }
+  constructor(private route: ActivatedRoute, private service: SearchingService, private sorter: PriceSortPipe) { }
 
   ngOnInit() {
     this.route.url.subscribe(val => {
@@ -31,6 +32,17 @@ export class ListPageComponent implements OnInit {
     this.ascending = true;
     this.show = false;
     // console.log(this.route);
+  }
+
+  sortByPrice() {
+    this.ascending = !this.ascending;
+    this.products = this.sorter.transform(this.products, this.stores, this.ascending);
+    // console.log(this.products);
+  }
+
+  tracker(index: number, item: any) {
+    console.log('seek');
+    return index;
   }
 
 }
