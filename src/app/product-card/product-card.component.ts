@@ -40,7 +40,9 @@ export class ProductCardComponent implements OnInit {
   }
 
   redirect() {
-    window.location.href = '/product/' + encodeURI(this.item.name);
+    if (this.isAvailable().length === 0) {
+      window.location.href = '/product/' + encodeURI(this.item.name);
+    }
   }
 
   getQuantity() {
