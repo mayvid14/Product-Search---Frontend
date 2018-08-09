@@ -1,0 +1,21 @@
+img{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.img-holder{
+    text-align: center;
+}
+
+mat-card{
+    padding: 0;
+    padding-right: 20px;
+}
+
+.desc-holder{
+    margin-left: 20px;
+}
+
+.description-holder{
+    margin-left: 20px;
+}

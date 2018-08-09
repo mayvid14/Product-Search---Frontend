@@ -38,4 +38,11 @@ export class SearchingService {
       })
     );
   }
+
+  getDetailsForProductPage(term: string) {
+    return forkJoin(
+      this.http.get(this.url.prefix + this.url.productByName + term),
+      this.http.get(this.url.prefix + this.url.allStores)
+    );
+  }
 }

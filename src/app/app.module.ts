@@ -18,6 +18,8 @@ import { PriceSortPipe } from './price-sort.pipe';
 import { ShowAvailablePipe } from './show-available.pipe';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { GoogleMapComponent } from './google-map/google-map.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     ProductCardComponent,
     PriceSortPipe,
     ShowAvailablePipe,
-    ProductPageComponent
+    ProductPageComponent,
+    GoogleMapComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'product-search' }),
@@ -40,7 +43,10 @@ import { ProductCardComponent } from './product-card/product-card.component';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'YOUR_KEY'
+    })
   ],
   providers: [PriceSortPipe, ShowAvailablePipe],
   bootstrap: [AppComponent]

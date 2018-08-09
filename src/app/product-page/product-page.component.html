@@ -9,17 +9,29 @@
   <div fxLayout="row">
     <a href=""></a>
   </div>
-  <div fxLayout="row" fxLayoutAlign="center">
-    <mat-card>
+  <div fxFlex fxLayout="row" fxLayoutAlign="center">
+    <mat-card fxFlex="80%">
       <div fxLayout="row" fxLayoutAlign="center">
-        <div fxFlex="50%"></div>
-        <div fxFlex="50%"></div>
+        <div fxFlex="50%" class="img-holder">
+          <img [src]="product?.imageUrl || 'https://goo.gl/uVkkWs'" alt="">
+        </div>
+        <div fxFlex="50%" class="desc-holder">
+          <h1>{{product?.name}}</h1>
+          <h2 class="mat-title">{{price | currency}} <span fxFlex></span> <span class="mat-caption">{{getQuantity(product!)}} in stock</span></h2>
+          <!-- <span class="mat-caption">{{count === 0 ? 'No' : count}} store{{count > 1 ? 's' : ''}}</span> -->
+          <ol>
+            <li *ngFor="let store of cont">
+              {{store.address}} <span fxFlex></span> <button mat-flat-button (click)="selectedStore = store">Get directions</button>
+            </li>
+          </ol>
+        </div>
       </div>
       <div fxLayout="row" fxLayoutAlign="center">
-
+        <app-google-map fxFlex [store]="selectedStore"></app-google-map>
       </div>
-      <div fxLayout="row" fxLayoutAlign="center">
-
+      <div fxLayout="column" fxLayoutAlign="center" class="description-holder">
+        <h2>Product Description</h2>
+        <p>{{product?.description}}</p>
       </div>
     </mat-card>
   </div>
