@@ -17,6 +17,7 @@ export class ListPageComponent implements OnInit {
   ascending: Boolean;
   stores = [];
   show: Boolean;
+  temp = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -33,15 +34,27 @@ export class ListPageComponent implements OnInit {
         this.products = el[0];
         this.head = el[1];
         this.stores = el[2];
+        this.temp = this.products;
       });
     });
     this.ascending = true;
     this.show = true;
+    console.log(this.temp, this.products);
   }
 
   sortByPrice() {
     this.ascending = !this.ascending;
-    this.products = this.sorter.transform(this.products, this.stores, this.ascending);
+    this.temp = this.sorter.transform(this.temp, this.stores, this.ascending);
+  }
+
+  hide() {
+    const object = this.hider.transform(this.products);
+    if (this.show) {
+      this.temp = object.is.concat(object.oos);
+    } else {
+      this.temp = object.is;
+    }
+    this.show = !this.show;
   }
 
 }

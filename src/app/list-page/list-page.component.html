@@ -10,7 +10,7 @@
     <div fxLyout="row" fxLayoutGap="5%">
         <h2 class="title">{{head}}</h2>
         <span fxFlex></span>
-        <h3 class="sub-heading-2" (click)="show = !show">{{show? 'Hide' : 'Show'}} unavailable</h3>
+        <h3 class="sub-heading-2" (click)="hide()">{{show? 'Hide' : 'Show'}} unavailable</h3>
         <h3 class="sub-heading-2" (click)="sortByPrice()">
           Price <mat-icon *ngIf="ascending">keyboard_arrow_up</mat-icon>
           <mat-icon *ngIf="!ascending">keyboard_arrow_down</mat-icon>
@@ -18,7 +18,7 @@
     </div>
     <div fxLyout="row">
       <mat-grid-list rowHeight="1:2" cols="5" gutterSize="5px">
-        <mat-grid-tile *ngFor="let product of products">
+        <mat-grid-tile *ngFor="let product of temp">
           <app-product-card [item]="product" [stores]="stores"></app-product-card>
         </mat-grid-tile>
       </mat-grid-list>
