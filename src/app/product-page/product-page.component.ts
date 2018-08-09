@@ -53,7 +53,7 @@ export class ProductPageComponent implements OnInit {
     return found;
   }
 
-  private getQuantity(item?: any) {
+  getQuantity(item?: any) {
     const feedArray = item ? item.feeds : [];
     let quantity = 0;
     feedArray.forEach(feed => quantity += feed.quantity);
