@@ -18,17 +18,12 @@
     </div>
     <div fxLyout="row">
       <mat-grid-list rowHeight="1:2" cols="5" gutterSize="5px">
-        <mat-grid-tile *ngFor="let product of products | showAvailable : show">
+        <mat-grid-tile *ngFor="let product of products">
           <app-product-card [item]="product" [stores]="stores"></app-product-card>
         </mat-grid-tile>
       </mat-grid-list>
-      <ul>
-        <li *ngFor="let product of products | showAvailable : show; trackBy: tracker;">
-          {{product.feeds[0].salePrice | json}}
-        </li>
-      </ul>
-      <h1 class="title" *ngIf="products.length === 0"><mat-icon>sentiment_very_dissatisfied</mat-icon> No products</h1>
-        {{products | json}}
+      <h1 class="mat-display-3" *ngIf="products.length === 0"><mat-icon>sentiment_very_dissatisfied</mat-icon> No products</h1>
+        <!-- {{products | json}} -->
     </div>
   </div>
 </div>

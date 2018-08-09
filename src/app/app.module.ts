@@ -40,7 +40,7 @@ import { ShowAvailablePipe } from './show-available.pipe';
     FlexLayoutModule,
     HttpClientModule
   ],
-  providers: [PriceSortPipe],
+  providers: [PriceSortPipe, ShowAvailablePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
