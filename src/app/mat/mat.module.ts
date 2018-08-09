@@ -5,7 +5,12 @@ import {
   MatToolbarModule,
   MatFormFieldModule,
   MatInputModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatChipsModule,
+  MatIconModule,
+  MatGridListModule,
+  MatCardModule,
+  MatBadgeModule
 } from '@angular/material';
 
 @NgModule({
@@ -15,14 +20,24 @@ import {
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatIconModule,
+    MatGridListModule,
+    MatCardModule,
+    MatBadgeModule
   ],
   exports: [
     MatButtonModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatIconModule,
+    MatGridListModule,
+    MatCardModule,
+    MatBadgeModule
   ],
   declarations: []
 })

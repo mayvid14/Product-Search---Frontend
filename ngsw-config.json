@@ -29,7 +29,9 @@
   }],
   "dataGroups": [{
     "name": "performance",
-    "urls": [],
+    "urls": [
+      "http://172.18.81.69:8096/**"
+    ],
     "cacheConfig": {
       "strategy": "performance",
       "maxSize": 100,

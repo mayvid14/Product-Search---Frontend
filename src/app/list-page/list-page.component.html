@@ -1,0 +1,35 @@
+<div fxLyout="row">
+  <mat-toolbar>
+    <h1>Product Search</h1>
+    <span fxFlex="10%"></span>
+    <app-search-bars [type]="type" fxFlex></app-search-bars>
+  </mat-toolbar>
+</div>
+<div fxLyout="row" fxLayoutGap="10%" fxLayoutAlign="center">
+  <div fxFlex="80%">
+    <div fxLyout="row" fxLayoutGap="5%">
+        <h2 class="title">{{head}}</h2>
+        <span fxFlex></span>
+        <h3 class="sub-heading-2" (click)="show = !show">{{show? 'Hide' : 'Show'}} unavailable</h3>
+        <h3 class="sub-heading-2" (click)="sortByPrice()">
+          Price <mat-icon *ngIf="ascending">keyboard_arrow_up</mat-icon>
+          <mat-icon *ngIf="!ascending">keyboard_arrow_down</mat-icon>
+        </h3>
+    </div>
+    <div fxLyout="row">
+      <mat-grid-list rowHeight="1:2" cols="5" gutterSize="5px">
+        <mat-grid-tile *ngFor="let product of products">
+          <app-product-card [item]="product" [stores]="stores"></app-product-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <h1 class="mat-display-3" *ngIf="products.length === 0"><mat-icon>sentiment_very_dissatisfied</mat-icon> No products</h1>
+        <!-- {{products | json}} -->
+    </div>
+  </div>
+</div>
+<div fxLyout="row">
+  <mat-toolbar>
+    <!-- TODO: Add footer -->
+    <h1>Footer</h1>
+  </mat-toolbar>
+</div>
