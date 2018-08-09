@@ -1,5 +1,7 @@
 <mat-card [ngClass]="isAvailable()" (click)="redirect()">
-  <img [src]="item.imageUrl || 'https://goo.gl/uVkkWs'" [alt]="item.name" mat-card-image>
+  <div class="image-holder">
+      <img [src]="item.imageUrl || 'https://goo.gl/uVkkWs'" [alt]="item.name">
+  </div>
   <mat-card-content>
     <span>{{getQuantity()}} in stock</span>
     <div *ngIf="item.feeds.length > 0">

@@ -9,3 +9,16 @@
 mat-card{
     cursor: pointer;
 }
+
+.image-holder{
+    height: 150px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+img{
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}

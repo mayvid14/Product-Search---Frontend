@@ -39,7 +39,6 @@ export class ListPageComponent implements OnInit {
     });
     this.ascending = true;
     this.show = true;
-    console.log(this.temp, this.products);
   }
 
   sortByPrice() {

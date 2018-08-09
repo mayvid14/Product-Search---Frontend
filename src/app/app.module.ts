@@ -14,9 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { MerchantListComponent } from './merchant-list/merchant-list.component';
 import { ListPageComponent } from './list-page/list-page.component';
 import { HomeComponent } from './home/home.component';
-import { ProductCardComponent } from './product-card/product-card.component';
 import { PriceSortPipe } from './price-sort.pipe';
 import { ShowAvailablePipe } from './show-available.pipe';
+import { ProductPageComponent } from './product-page/product-page.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ShowAvailablePipe } from './show-available.pipe';
     HomeComponent,
     ProductCardComponent,
     PriceSortPipe,
-    ShowAvailablePipe
+    ShowAvailablePipe,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'product-search' }),
