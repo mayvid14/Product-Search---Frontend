@@ -26,6 +26,10 @@ export class SearchingService {
     return this.http.get(this.url.prefix + this.url.allMerchants);
   }
 
+  getAllCategories() {
+    return this.http.get(this.url.prefix + this.url.allCategories);
+  }
+
   getMerchantProducts(name: string) {
     return this.http.get(this.url.prefix + this.url.merchantByName + name).pipe(
       flatMap((val: any) => {
@@ -34,6 +38,19 @@ export class SearchingService {
           of(val.products),
           of(val.name),
           of(val.stores)
+        );
+      })
+    );
+  }
+
+  getCategoryProducts(name: string) {
+    return this.http.get(this.url.prefix + this.url.categoryByName + name).pipe(
+      flatMap((val: any) => {
+        console.log(val);
+        return forkJoin(
+          of(val[0].products),
+          of(val[0].name),
+          this.http.get(this.url.prefix + this.url.allStores)
         );
       })
     );

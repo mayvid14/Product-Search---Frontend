@@ -20,6 +20,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { AgmCoreModule } from '@agm/core';
+import { CategoryListComponent } from './category-list/category-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AgmCoreModule } from '@agm/core';
     PriceSortPipe,
     ShowAvailablePipe,
     ProductPageComponent,
-    GoogleMapComponent
+    GoogleMapComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'product-search' }),

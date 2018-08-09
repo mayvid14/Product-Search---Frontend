@@ -30,15 +30,29 @@ export class ListPageComponent implements OnInit {
     this.route.url.subscribe(val => {
       this.type = val[0].path;
       this.head = val[1].path;
+      this.findByType(this.type);
+    });
+    this.ascending = true;
+    this.show = true;
+  }
+
+  private findByType(term: string) {
+    if (term === 'merchant') {
       this.service.getMerchantProducts(this.head).subscribe((el: any[]) => {
         this.products = el[0];
         this.head = el[1];
         this.stores = el[2];
         this.temp = this.products;
       });
-    });
-    this.ascending = true;
-    this.show = true;
+    } else if (term === 'category') {
+      this.service.getCategoryProducts(this.head).subscribe((el: any[]) => {
+        console.log(el);
+        this.products = el[0];
+        this.head = el[1];
+        this.stores = el[2];
+        this.temp = this.products;
+      });
+    }
   }
 
   sortByPrice() {

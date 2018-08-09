@@ -6,6 +6,8 @@ export class URLs {
     allProducts = '/v2/product';
     allMerchants = '/v2/merchant';
     merchantByName = '/v2/merchant/displayName/';
+    categoryByName = '/v2/category/categoryName/';
     allStores = '/v2/store';
+    allCategories = '/v2/category';
     productByName = '/v2/product/productname/';
 }
