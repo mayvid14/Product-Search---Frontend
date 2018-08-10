@@ -47,7 +47,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
     FlexLayoutModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR_KEY'
+      apiKey: ''
     })
   ],
   providers: [PriceSortPipe, ShowAvailablePipe],

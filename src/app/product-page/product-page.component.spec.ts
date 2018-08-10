@@ -5,7 +5,7 @@ import { SearchBarsComponent } from '../search-bars/search-bars.component';
 import { MatModule } from '../mat/mat.module';
 import { GoogleMapComponent } from '../google-map/google-map.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,10 +13,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 describe('ProductPageComponent', () => {
   let component: ProductPageComponent;
   let fixture: ComponentFixture<ProductPageComponent>;
+  let mapsAPILoader;
 
   beforeEach(async(() => {
+    mapsAPILoader = new MockMapsAPILoader();
+    TestBed.overrideProvider(MapsAPILoader, { useValue: mapsAPILoader});
     TestBed.configureTestingModule({
-      declarations: [ ProductPageComponent, SearchBarsComponent, GoogleMapComponent ],
+      declarations: [ProductPageComponent, SearchBarsComponent, GoogleMapComponent],
       imports: [
         MatModule,
         FormsModule,
@@ -25,9 +28,10 @@ describe('ProductPageComponent', () => {
         RouterTestingModule,
         HttpClientTestingModule,
         BrowserAnimationsModule
-      ]
+      ],
+      providers: [MapsAPILoader]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -37,6 +41,17 @@ describe('ProductPageComponent', () => {
   });
 
   it('should create', () => {
+    spyOn(mapsAPILoader, 'load').and.returnValue(new Promise(() => {
+      return true;
+    }));
     expect(component).toBeTruthy();
   });
 });
+
+class MockMapsAPILoader extends MapsAPILoader {
+  public load(): Promise<void> {
+    return new Promise(() => {
+      return true;
+    });
+  }
+}
