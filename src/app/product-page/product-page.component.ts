@@ -86,4 +86,9 @@ export class ProductPageComponent implements OnInit {
     return containingStores;
   }
 
+  isFinite(price: any) {
+    // console.log(price);
+    return isFinite(price);
+  }
+
 }

@@ -33,7 +33,7 @@ export class ListPageComponent implements OnInit {
       this.findByType(this.type);
     });
     this.ascending = true;
-    this.show = true;
+    this.show = false;
   }
 
   private findByType(term: string) {

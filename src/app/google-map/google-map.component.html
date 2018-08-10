@@ -1,3 +1,5 @@
-<agm-map [latitude]="store.latitude" [longitude]="store.longitude">
-    <agm-marker [latitude]="store.latitude" [longitude]="store.longitude"></agm-marker>
-</agm-map>
+<div *ngIf="store">
+    <agm-map [latitude]="store.latitude" [longitude]="store.longitude">
+        <agm-marker [latitude]="store.latitude" [longitude]="store.longitude"></agm-marker>
+    </agm-map>
+</div>

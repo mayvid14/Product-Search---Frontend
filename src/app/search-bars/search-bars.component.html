@@ -1,15 +1,15 @@
-<form [formGroup]="form" fxLayout="row" fxLayoutGap="20px">
+<form [formGroup]="form" fxLayout="row" fxLayoutGap="20px" (submit)="search()">
   <mat-form-field fxFlex="50%">
     <input type="text" matInput formControlName="search" [matAutocomplete]="types" placeholder="Search for products here" id="src">
   </mat-form-field>
 
   <mat-autocomplete #types="matAutocomplete">
-    <mat-option *ngFor="let option of options" [value]="option.name">{{option.name}}</mat-option>
+    <mat-option *ngFor="let option of options" [value]="option.displayName || option.name">{{option.name}}</mat-option>
   </mat-autocomplete>
 
   <div fxFlex>
     <mat-form-field fxFlex>
-      <input type="text" matInput formControlName="location" [matAutocomplete]="loc" placeholder="Enter location here" id="loc">
+      <input type="text" matInput formControlName="location" [matAutocomplete]="loc" placeholder="Enter location here" id="loc" readonly>
     </mat-form-field>
   </div>
 
@@ -17,5 +17,5 @@
     <mat-option *ngFor="let option of locations" [value]="option">{{option}}</mat-option>
   </mat-autocomplete>
 
-  <button mat-flat-button>Search</button>
+  <button mat-flat-button class="thin">Search</button>
 </form>

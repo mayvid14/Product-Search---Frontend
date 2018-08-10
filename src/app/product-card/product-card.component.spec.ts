@@ -1,20 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductCardComponent } from './product-card.component';
+import { MatModule } from '../mat/mat.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Component } from '@angular/core';
 
 describe('ProductCardComponent', () => {
-  let component: ProductCardComponent;
-  let fixture: ComponentFixture<ProductCardComponent>;
+  let component: ForTestComponent;
+  let fixture: ComponentFixture<ForTestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductCardComponent ]
+      declarations: [ForTestComponent, ProductCardComponent],
+      imports: [MatModule, HttpClientTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductCardComponent);
+    fixture = TestBed.createComponent(ForTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,3 +27,12 @@ describe('ProductCardComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+@Component({
+  selector: 'app-for-test-component',
+  template: '<app-product-card [stores]="stores" [item]="item"></app-product-card>'
+})
+class ForTestComponent {
+  stores = [{ feeds: [] }];
+  item = { feeds: [] };
+}

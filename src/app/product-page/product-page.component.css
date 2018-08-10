@@ -23,3 +23,12 @@ mat-card{
 .navig{
     margin: 20px;
 }
+
+.logo {
+    text-decoration: none;
+    color: #494949;
+}
+
+.oos {
+    color: #dc143c;
+}

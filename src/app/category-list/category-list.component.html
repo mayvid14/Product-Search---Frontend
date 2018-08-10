@@ -1,5 +1,5 @@
 <mat-chip-list>
-    <mat-chip *ngFor="let category of categories" selected (click)="goto(category.name)" color="none">
-      {{category.name}}
-    </mat-chip>
-  </mat-chip-list>
+  <mat-chip *ngFor="let category of categories" selected (click)="goto(category.name)" class="enlarge">
+    {{category.name}}
+  </mat-chip>
+</mat-chip-list>

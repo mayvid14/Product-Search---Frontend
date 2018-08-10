@@ -31,7 +31,7 @@
   "dataGroups": [{
     "name": "performance",
     "urls": [
-      "http://172.18.81.69:8096/**"
+      "http://52.72.55.178:8080/productsearch/**"
     ],
     "cacheConfig": {
       "strategy": "performance",

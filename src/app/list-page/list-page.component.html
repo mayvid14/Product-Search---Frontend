@@ -1,8 +1,10 @@
 <div fxLayout="row">
   <mat-toolbar>
-    <h1>Product Search</h1>
-    <span fxFlex="10%"></span>
-    <app-search-bars [type]="type" fxFlex></app-search-bars>
+    <a href="/" class="logo">Product Search</a>
+    <span fxFlex="20%"></span>
+    <div fxFlex>
+      <app-search-bars [type]="type"></app-search-bars>
+    </div>
   </mat-toolbar>
 </div>
 <div fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center">
@@ -10,14 +12,14 @@
     <div fxLayout="row" fxLayoutGap="5%">
       <h2 class="title">{{head}}</h2>
       <span fxFlex></span>
-      <h3 class="sub-heading-2" (click)="hide()">{{show? 'Hide' : 'Show'}} unavailable</h3>
+      <h3 class="sub-heading-2" (click)="hide()">{{show? 'Unavailable hidden' : 'Showing unavailable'}}</h3>
       <h3 class="sub-heading-2" (click)="sortByPrice()">
         Price {{ascending ? '&#9650;' : '&#9660;'}}
       </h3>
     </div>
     <div fxLayout="row" fxLayoutGap="2%">
       <div fxFlex="20%" *ngFor="let product of temp">
-          <app-product-card [item]="product" [stores]="stores"></app-product-card>
+        <app-product-card [item]="product" [stores]="stores"></app-product-card>
       </div>
       <h1 class="mat-display-3" *ngIf="products.length === 0">
         <mat-icon>sentiment_very_dissatisfied</mat-icon> No products</h1>

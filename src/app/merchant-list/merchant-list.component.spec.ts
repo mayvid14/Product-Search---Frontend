@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MerchantListComponent } from './merchant-list.component';
+import { MatModule } from '../mat/mat.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('MerchantListComponent', () => {
   let component: MerchantListComponent;
@@ -8,7 +10,11 @@ describe('MerchantListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MerchantListComponent ]
+      declarations: [ MerchantListComponent ],
+      imports: [
+        MatModule,
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   }));

@@ -1,9 +1,30 @@
-<div fxLayout="row" fxLayoutAlign="center">
-  <app-search-bars type="home" fxFlex="80%"></app-search-bars>
+<div fxLayout="row" fxLayoutAlign="center" class="section1">
+  <div fxLayout="column" fxLayoutAlign="center">
+    <div fxFlex="100%">
+      <div fxLayout="row" fxLayoutAlign="center">
+        <h1 class="mat-display-4" fxFlex="70%">Find great buys close to you in Singapore</h1>
+      </div>
+    </div>
+    <span fxFlex="100%"></span>
+    <div fxFlex>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <app-search-bars type="home" fxFlex="80%"></app-search-bars>
+      </div>
+    </div>
+    <span fxFlex></span>
+  </div>
 </div>
 <div fxLayout="row" fxLayoutAlign="center">
-  <app-merchant-list></app-merchant-list>
+  <mat-card fxFlex>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <app-merchant-list></app-merchant-list>
+    </div>
+  </mat-card>
 </div>
 <div fxLayout="row" fxLayoutAlign="center">
-  <app-category-list></app-category-list>
+  <mat-card fxFlex class="max-pad">
+    <div fxLayout="row" fxLayoutAlign="center">
+      <app-category-list></app-category-list>
+    </div>
+  </mat-card>
 </div>

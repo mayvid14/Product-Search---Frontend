@@ -50,24 +50,41 @@ export class SearchBarsComponent implements OnInit {
 
     switch (this.type) {
       case 'product':
-      this.service.getAllProducts().subscribe((val: any[]) => this.temp = val);
-      break;
+        this.service.getAllProducts().subscribe((val: any[]) => this.temp = val);
+        break;
       case 'merchant':
-      this.service.getAllMerchants().subscribe((val: any[]) => this.temp = val);
-      break;
+        this.service.getAllMerchants().subscribe((val: any[]) => this.temp = val);
+        break;
       case 'category':
-      this.service.getAllCategories().subscribe((val: any[]) => this.temp = val);
-      break;
+        this.service.getAllCategories().subscribe((val: any[]) => this.temp = val);
+        break;
       case 'store':
-      this.service.getAllStores().subscribe((val: any[]) => this.temp = val);
-      break;
+        this.service.getAllStores().subscribe((val: any[]) => this.temp = val);
+        break;
       default:
-      this.service.getAllCategories().subscribe((val: any[]) => {
-        this.temp = val;
-        this.service.getAllMerchants().subscribe((el: any[]) => el.forEach(e => this.temp.push(e)));
-      });
-      break;
+        this.service.getAllCategories().subscribe((val: any[]) => {
+          this.temp = val;
+          this.service.getAllMerchants().subscribe((el: any[]) => el.forEach(e => this.temp.push(e)));
+        });
+        break;
     }
   }
 
+  search() {
+    if (this.type === 'home') {
+      let found = false;
+      this.service.getAllMerchants().subscribe((val: any[]) => {
+        val.forEach(merchant => {
+          if (merchant.displayName === this.form.value.search) {
+            found = true;
+          }
+        });
+        found ?
+          window.location.href = '/merchant/' + encodeURI(this.form.value.search) :
+          window.location.href = '/category/' + encodeURI(this.form.value.search);
+      });
+    } else {
+      window.location.href = '/' + this.type + '/' + encodeURI(this.form.value.search);
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GoogleMapComponent } from './google-map.component';
+import { AgmCoreModule } from '@agm/core';
 
 describe('GoogleMapComponent', () => {
   let component: GoogleMapComponent;
@@ -8,9 +9,11 @@ describe('GoogleMapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GoogleMapComponent ]
+      declarations: [GoogleMapComponent],
+      imports: [AgmCoreModule],
+      providers: []
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

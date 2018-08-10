@@ -1,13 +1,14 @@
 <div fxLayout="row">
   <mat-toolbar>
-    <a href="/"><h1>Product Search</h1></a>
+    <a href="/" class="logo">Product Search</a>
     <span fxFlex="10%"></span>
     <app-search-bars [type]="'product'" fxFlex></app-search-bars>
   </mat-toolbar>
 </div>
 <div fxLayout="row" fxLayoutAlign="center">
   <div fxFlex="80%" class="navig">
-    <a [href]="'/store/' + selectedStore.name">&#9664; See more from {{selectedStore.name}}</a>
+    <a [href]="'/store/' + selectedStore.name" *ngIf="selectedStore">&#9664; See more from {{selectedStore.name}}</a>
+    <a [href]="'/'" *ngIf="!selectedStore">&#9664; Go back to home</a>
   </div>
 </div>
 <div fxLayout="row" fxLayoutAlign="center">
@@ -19,9 +20,12 @@
         </div>
         <div fxFlex="50%" class="desc-holder">
           <h1>{{product?.name}}</h1>
-          <h2 class="mat-title">{{price | currency}}
+          <h2 class="mat-title" *ngIf="isFinite(price)">{{price | currency}}
             <span fxFlex></span>
             <span class="mat-caption">{{quantity}} in stock</span>
+          </h2>
+          <h2 class="mat-title" *ngIf="!isFinite(price)">
+            <span class="mat-caption oos">Out of stock</span>
           </h2>
           <!-- <span class="mat-caption">{{count === 0 ? 'No' : count}} store{{count > 1 ? 's' : ''}}</span> -->
           <ol>
