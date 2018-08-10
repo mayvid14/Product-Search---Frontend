@@ -10,5 +10,5 @@ export class URLs {
     allStores = '/v2/store';
     allCategories = '/v2/category';
     productByName = '/v2/product/productname/';
-    storeByName = '/v2/store/storename/';
+    storeByName = '/v2/store/storeName/';
 }
