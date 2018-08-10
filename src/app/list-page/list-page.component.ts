@@ -52,6 +52,14 @@ export class ListPageComponent implements OnInit {
         this.stores = el[2];
         this.temp = this.products;
       });
+    } else if (term === 'store') {
+      this.service.getStoreProducts(this.head).subscribe((el: any[]) => {
+        console.log(el);
+        this.products = el[0];
+        this.head = el[1];
+        this.stores = el[2];
+        this.temp = this.products;
+      });
     }
   }
 

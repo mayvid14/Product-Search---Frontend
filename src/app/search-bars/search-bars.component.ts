@@ -53,13 +53,19 @@ export class SearchBarsComponent implements OnInit {
       this.service.getAllProducts().subscribe((val: any[]) => this.temp = val);
       break;
       case 'merchant':
-      // TODO: Change function
-      this.service.getAllProducts().subscribe((val: any[]) => this.temp = val);
+      this.service.getAllMerchants().subscribe((val: any[]) => this.temp = val);
       break;
       case 'category':
+      this.service.getAllCategories().subscribe((val: any[]) => this.temp = val);
+      break;
+      case 'store':
+      this.service.getAllStores().subscribe((val: any[]) => this.temp = val);
       break;
       default:
-      this.temp = [];
+      this.service.getAllCategories().subscribe((val: any[]) => {
+        this.temp = val;
+        this.service.getAllMerchants().subscribe((el: any[]) => el.forEach(e => this.temp.push(e)));
+      });
       break;
     }
   }

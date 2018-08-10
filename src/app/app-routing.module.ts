@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'merchant/:merchant-name', component: ListPageComponent},
   {path: 'category/:category-name', component: ListPageComponent},
+  {path: 'store/:store-name', component: ListPageComponent},
   {path: 'product/:product-name', component: ProductPageComponent},
   {path: '**', redirectTo: ''}
 ];

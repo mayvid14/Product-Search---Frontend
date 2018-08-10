@@ -12,9 +12,7 @@
       <span fxFlex></span>
       <h3 class="sub-heading-2" (click)="hide()">{{show? 'Hide' : 'Show'}} unavailable</h3>
       <h3 class="sub-heading-2" (click)="sortByPrice()">
-        Price
-        <mat-icon *ngIf="ascending">keyboard_arrow_up</mat-icon>
-        <mat-icon *ngIf="!ascending">keyboard_arrow_down</mat-icon>
+        Price {{ascending ? '&#9650;' : '&#9660;'}}
       </h3>
     </div>
     <div fxLayout="row" fxLayoutGap="2%">

@@ -30,6 +30,10 @@ export class SearchingService {
     return this.http.get(this.url.prefix + this.url.allCategories);
   }
 
+  getAllStores() {
+    return this.http.get(this.url.prefix + this.url.allStores);
+  }
+
   getMerchantProducts(name: string) {
     return this.http.get(this.url.prefix + this.url.merchantByName + name).pipe(
       flatMap((val: any) => {
@@ -56,10 +60,39 @@ export class SearchingService {
     );
   }
 
+  getStoreProducts(name: string) {
+    return this.http.get(this.url.prefix + this.url.storeByName + name).pipe(
+      flatMap((val: any) => {
+        console.log(val);
+        return forkJoin(
+          this.searchStoreProducts(val[0].feeds),
+          of(val[0].name),
+          this.http.get(this.url.prefix + this.url.allStores)
+        );
+      })
+    );
+  }
+
   getDetailsForProductPage(term: string) {
     return forkJoin(
       this.http.get(this.url.prefix + this.url.productByName + term),
-      this.http.get(this.url.prefix + this.url.allStores)
+      this.getAllStores()
     );
+  }
+
+  searchStoreProducts(storeFeeds: any[]) {
+    const products = [];
+    this.getAllProducts().subscribe((prods: any) => {
+      prods.forEach(prod => {
+        prod.feeds.forEach(prodFeed => {
+          storeFeeds.forEach(storeFeed => {
+            if (storeFeed.id === prodFeed.id) {
+              products.push(prod);
+            }
+          });
+        });
+      });
+    });
+    return of(products);
   }
 }

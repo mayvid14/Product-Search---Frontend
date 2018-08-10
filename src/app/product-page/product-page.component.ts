@@ -13,21 +13,28 @@ export class ProductPageComponent implements OnInit {
   stores = [];
   price: number;
   count: number;
+  quantity: number;
   cont = [];
   selectedStore: any;
 
   constructor(private route: ActivatedRoute, private service: SearchingService, private pricer: GetPriceService) { }
 
   ngOnInit() {
+    this.selectedStore = {latitude: 0, longitude: 0};
     this.route.url.subscribe(val => {
       const productName = val[1].toString();
-      console.log(productName);
+      // console.log(productName);
       this.service.getDetailsForProductPage(productName).subscribe((el: any[]) => {
+        // FIXME: Use first onr for local db, second for prod db
+
+        // this.product = el[0][0];
         this.product = el[0];
+
         this.stores = el[1];
-        console.log(this.product, this.stores);
+        // console.log(this.product, this.stores);
         this.price = this.pricer.salePriceAndPriceInStore(this.stores, this.product).salePrice;
         this.count = 0;
+        // console.log(this.product, this.stores);
         this.stores.forEach(store => {
           const feedArr = store.feeds;
           feedArr.forEach(storeFeed => {
@@ -35,15 +42,19 @@ export class ProductPageComponent implements OnInit {
               this.count++;
             }
           });
+          // console.log(store);
         });
         this.cont = this.productStores();
         this.selectedStore = this.cont ? this.cont[0] : {latitude: 0, longitude: 0};
-        console.log(this.product, this.stores);
+        this.quantity = this.getQuantity() || 0;
+        // console.log('**************************************************');
+        // console.log(this.product, this.stores, this.selectedStore);
       });
     });
   }
 
   private isAnItemFeed(storeFeed: any) {
+    // console.log('Is an item feed');
     let found = false;
     this.product.feeds.forEach(itemFeed => {
       if (itemFeed.id === storeFeed.id) {
@@ -53,8 +64,8 @@ export class ProductPageComponent implements OnInit {
     return found;
   }
 
-  getQuantity(item?: any) {
-    const feedArray = item ? item.feeds : [];
+  getQuantity() {
+    const feedArray = this.product ? this.product.feeds : [];
     let quantity = 0;
     feedArray.forEach(feed => quantity += feed.quantity);
     return quantity;

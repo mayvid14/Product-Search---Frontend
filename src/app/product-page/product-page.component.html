@@ -1,14 +1,16 @@
 <div fxLayout="row">
   <mat-toolbar>
-    <h1>Product Search</h1>
+    <a href="/"><h1>Product Search</h1></a>
     <span fxFlex="10%"></span>
     <app-search-bars [type]="'product'" fxFlex></app-search-bars>
   </mat-toolbar>
 </div>
 <div fxLayout="row" fxLayoutAlign="center">
-  <div fxLayout="row">
-    <a href=""></a>
+  <div fxFlex="80%" class="navig">
+    <a [href]="'/store/' + selectedStore.name">&#9664; See more from {{selectedStore.name}}</a>
   </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="center">
   <div fxFlex fxLayout="row" fxLayoutAlign="center">
     <mat-card fxFlex="80%">
       <div fxLayout="row" fxLayoutAlign="center">
@@ -17,11 +19,16 @@
         </div>
         <div fxFlex="50%" class="desc-holder">
           <h1>{{product?.name}}</h1>
-          <h2 class="mat-title">{{price | currency}} <span fxFlex></span> <span class="mat-caption">{{getQuantity(product!)}} in stock</span></h2>
+          <h2 class="mat-title">{{price | currency}}
+            <span fxFlex></span>
+            <span class="mat-caption">{{quantity}} in stock</span>
+          </h2>
           <!-- <span class="mat-caption">{{count === 0 ? 'No' : count}} store{{count > 1 ? 's' : ''}}</span> -->
           <ol>
             <li *ngFor="let store of cont">
-              {{store.address}} <span fxFlex></span> <button mat-flat-button (click)="selectedStore = store">Get directions</button>
+              {{store.address}}
+              <span fxFlex></span>
+              <button mat-flat-button (click)="selectedStore = store">Get directions</button>
             </li>
           </ol>
         </div>

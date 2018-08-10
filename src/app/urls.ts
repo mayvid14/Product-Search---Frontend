@@ -1,7 +1,7 @@
 export class URLs {
-    prefix = 'http://172.18.81.69:8096/productsearch';
+    // prefix = 'http://172.18.81.69:8096/productsearch';
     // prefix = 'http://localhost:3000';
-    // prefix = '';
+    prefix = 'http://52.72.55.178:8080/productsearch';
     getProduct = '/v2/product/productname/';
     allProducts = '/v2/product';
     allMerchants = '/v2/merchant';
@@ -10,4 +10,5 @@ export class URLs {
     allStores = '/v2/store';
     allCategories = '/v2/category';
     productByName = '/v2/product/productname/';
+    storeByName = '/v2/store/storename/';
 }
