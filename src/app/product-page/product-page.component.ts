@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SearchingService } from '../searching.service';
 import { GetPriceService } from '../get-price.service';
+import { Product } from '../product';
+import { Store } from '../store';
+import { Feed } from '../feed';
 
 @Component({
   selector: 'app-product-page',
@@ -9,21 +12,20 @@ import { GetPriceService } from '../get-price.service';
   styleUrls: ['./product-page.component.css']
 })
 export class ProductPageComponent implements OnInit {
-  product: any;
-  stores = [];
+  product: Product;
+  stores: Store[] = [];
   price: number;
   count: number;
   quantity: number;
-  cont = [];
-  selectedStore: any;
+  cont: Store[] = [];
+  selectedStore: Store;
 
   constructor(private route: ActivatedRoute, private service: SearchingService, private pricer: GetPriceService) { }
 
   ngOnInit() {
-    this.selectedStore = {latitude: 0, longitude: 0};
+    this.selectedStore = null;
     this.route.url.subscribe(val => {
       const productName = val[1].toString();
-      // console.log(productName);
       this.service.getDetailsForProductPage(productName).subscribe((el: any[]) => {
         // FIXME: Use first onr for local db, second for prod db
 
@@ -31,10 +33,8 @@ export class ProductPageComponent implements OnInit {
         this.product = el[0];
 
         this.stores = el[1];
-        // console.log(this.product, this.stores);
         this.price = this.pricer.salePriceAndPriceInStore(this.stores, this.product).salePrice;
         this.count = 0;
-        // console.log(this.product, this.stores);
         this.stores.forEach(store => {
           const feedArr = store.feeds;
           feedArr.forEach(storeFeed => {
@@ -42,19 +42,15 @@ export class ProductPageComponent implements OnInit {
               this.count++;
             }
           });
-          // console.log(store);
         });
         this.cont = this.productStores();
-        this.selectedStore = this.cont ? this.cont[0] : {latitude: 0, longitude: 0};
+        this.selectedStore = this.cont ? this.cont[0] : null;
         this.quantity = this.getQuantity() || 0;
-        // console.log('**************************************************');
-        // console.log(this.product, this.stores, this.selectedStore);
       });
     });
   }
 
-  private isAnItemFeed(storeFeed: any) {
-    // console.log('Is an item feed');
+  private isAnItemFeed(storeFeed: Feed) {
     let found = false;
     this.product.feeds.forEach(itemFeed => {
       if (itemFeed.id === storeFeed.id) {
@@ -87,7 +83,6 @@ export class ProductPageComponent implements OnInit {
   }
 
   isFinite(price: any) {
-    // console.log(price);
     return isFinite(price);
   }
 

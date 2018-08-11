@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Store } from '../store';
 
 @Component({
   selector: 'app-google-map',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
   styleUrls: ['./google-map.component.css']
 })
 export class GoogleMapComponent implements OnInit {
-  @Input() store: any;
+  @Input() store: Store;
 
   constructor() { }
 

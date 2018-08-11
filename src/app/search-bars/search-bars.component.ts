@@ -3,6 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, fromEvent } from 'rxjs';
 import { map, tap, distinctUntilChanged, debounceTime, switchMap, filter } from 'rxjs/operators';
 import { SearchingService } from '../searching.service';
+import { Product } from '../product';
+import { Merchant } from '../merchant';
+import { Category } from '../category';
+import { Store } from '../store';
 
 @Component({
   selector: 'app-search-bars',
@@ -40,6 +44,8 @@ export class SearchBarsComponent implements OnInit {
       this.options.splice(5);
     });
 
+    // TODO: Location search bar
+
     /*fromEvent(document.getElementById('loc'), 'input').pipe(
       map((val: any) => val.target.value),
       map(val => val.trim().toLowerCase()),
@@ -50,21 +56,21 @@ export class SearchBarsComponent implements OnInit {
 
     switch (this.type) {
       case 'product':
-        this.service.getAllProducts().subscribe((val: any[]) => this.temp = val);
+        this.service.getAllProducts().subscribe((val: Product[]) => this.temp = val);
         break;
       case 'merchant':
-        this.service.getAllMerchants().subscribe((val: any[]) => this.temp = val);
+        this.service.getAllMerchants().subscribe((val: Merchant[]) => this.temp = val);
         break;
       case 'category':
-        this.service.getAllCategories().subscribe((val: any[]) => this.temp = val);
+        this.service.getAllCategories().subscribe((val: Category[]) => this.temp = val);
         break;
       case 'store':
-        this.service.getAllStores().subscribe((val: any[]) => this.temp = val);
+        this.service.getAllStores().subscribe((val: Store[]) => this.temp = val);
         break;
       default:
-        this.service.getAllCategories().subscribe((val: any[]) => {
+        this.service.getAllCategories().subscribe((val: Category[]) => {
           this.temp = val;
-          this.service.getAllMerchants().subscribe((el: any[]) => el.forEach(e => this.temp.push(e)));
+          this.service.getAllMerchants().subscribe((el: Merchant[]) => el.forEach(e => this.temp.push(e)));
         });
         break;
     }
@@ -73,7 +79,7 @@ export class SearchBarsComponent implements OnInit {
   search() {
     if (this.type === 'home') {
       let found = false;
-      this.service.getAllMerchants().subscribe((val: any[]) => {
+      this.service.getAllMerchants().subscribe((val: Merchant[]) => {
         val.forEach(merchant => {
           if (merchant.displayName === this.form.value.search) {
             found = true;

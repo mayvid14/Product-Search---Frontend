@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Store } from './store';
+import { Product } from './product';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +9,9 @@ export class GetPriceService {
 
   constructor() { }
 
-  salePriceAndPriceInStore(stores: any[], item: any) {
+  salePriceAndPriceInStore(stores: Store[], item: Product) {
     let minSP = Number.POSITIVE_INFINITY;
     let minPrice = Number.POSITIVE_INFINITY;
-    // console.log(stores);
     stores.forEach(store => {
       const feedArr = store.feeds;
       feedArr.forEach(storeFeed => {

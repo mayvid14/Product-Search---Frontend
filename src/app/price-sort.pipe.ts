@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { GetPriceService } from './get-price.service';
+import { Product } from './product';
+import { Store } from './store';
 
 @Pipe({
   name: 'priceSort'
@@ -7,7 +9,7 @@ import { GetPriceService } from './get-price.service';
 export class PriceSortPipe implements PipeTransform {
   constructor(private service: GetPriceService) { }
 
-  transform(array: any[], stores: any[], ascending: Boolean): any[] {
+  transform(array: Product[], stores: Store[], ascending: Boolean): any[] {
     if (ascending) {
       return array.sort((a, b) => this.numComp(
         this.service.salePriceAndPriceInStore(stores, a).salePrice,

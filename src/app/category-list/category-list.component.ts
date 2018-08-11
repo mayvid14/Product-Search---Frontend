@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchingService } from '../searching.service';
+import { Category } from '../category';
 
 @Component({
   selector: 'app-category-list',
@@ -7,12 +8,12 @@ import { SearchingService } from '../searching.service';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-  categories = [];
+  categories: Category[] = [];
 
   constructor(private service: SearchingService) { }
 
   ngOnInit() {
-    this.service.getAllCategories().subscribe((val: any[]) => this.categories = val.slice(0, 7));
+    this.service.getAllCategories().subscribe((val: Category[]) => this.categories = val.slice(0, 7));
   }
 
   goto(term: string) {

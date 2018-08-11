@@ -4,6 +4,8 @@ import { take } from 'rxjs/operators';
 import { SearchingService } from '../searching.service';
 import { PriceSortPipe } from '../price-sort.pipe';
 import { ShowAvailablePipe } from '../show-available.pipe';
+import { Product } from '../product';
+import { Store } from '../store';
 
 @Component({
   selector: 'app-list-page',
@@ -13,11 +15,11 @@ import { ShowAvailablePipe } from '../show-available.pipe';
 export class ListPageComponent implements OnInit {
   type: string;
   head: string;
-  products = [];
+  products: Product[] = [];
   ascending: Boolean;
-  stores = [];
+  stores: Store[] = [];
   show: Boolean;
-  temp = [];
+  temp: Product[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +48,6 @@ export class ListPageComponent implements OnInit {
       });
     } else if (term === 'category') {
       this.service.getCategoryProducts(this.head).subscribe((el: any[]) => {
-        console.log(el);
         this.products = el[0];
         this.head = el[1];
         this.stores = el[2];
@@ -54,7 +55,6 @@ export class ListPageComponent implements OnInit {
       });
     } else if (term === 'store') {
       this.service.getStoreProducts(this.head).subscribe((el: any[]) => {
-        console.log(el);
         this.products = el[0];
         this.head = el[1];
         this.stores = el[2];

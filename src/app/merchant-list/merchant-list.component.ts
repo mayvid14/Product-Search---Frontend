@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchingService } from '../searching.service';
+import { Merchant } from '../merchant';
 
 @Component({
   selector: 'app-merchant-list',
@@ -7,12 +8,12 @@ import { SearchingService } from '../searching.service';
   styleUrls: ['./merchant-list.component.css']
 })
 export class MerchantListComponent implements OnInit {
-  merchants = [];
+  merchants: Merchant[] = [];
 
   constructor(private service: SearchingService) { }
 
   ngOnInit() {
-    this.service.getAllMerchants().subscribe((val: any[]) => this.merchants = val.slice(0, 7));
+    this.service.getAllMerchants().subscribe((val: Merchant[]) => this.merchants = val.slice(0, 7));
   }
 
   goto(term: string) {

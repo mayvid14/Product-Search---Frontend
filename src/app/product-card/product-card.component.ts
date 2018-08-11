@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GetPriceService } from '../get-price.service';
+import { Product } from '../product';
+import { Store } from '../store';
 
 @Component({
   selector: 'app-product-card',
@@ -7,8 +9,8 @@ import { GetPriceService } from '../get-price.service';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {
-  @Input() item: any;
-  @Input() stores: any;
+  @Input() item: Product;
+  @Input() stores: Store[];
   count: number;
 
   constructor(private service: GetPriceService) { }
