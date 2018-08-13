@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, PLATFORM_ID, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, fromEvent } from 'rxjs';
 import { map, tap, distinctUntilChanged, debounceTime, switchMap, filter } from 'rxjs/operators';
@@ -21,7 +21,7 @@ export class SearchBarsComponent implements OnInit {
   locations = [];
   temp = [];
 
-  constructor(private fb: FormBuilder, private service: SearchingService) { }
+  constructor(@Inject(PLATFORM_ID) private platform: Object, private fb: FormBuilder, private service: SearchingService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -29,7 +29,7 @@ export class SearchBarsComponent implements OnInit {
       location: ['']
     });
 
-    if (isPlatformBrowser) {
+    if (isPlatformBrowser(this.platform)) {
       fromEvent(document.getElementById('src'), 'input').pipe(
         map((val: any) => val.target.value),
         map(val => val.trim().toLowerCase()),
