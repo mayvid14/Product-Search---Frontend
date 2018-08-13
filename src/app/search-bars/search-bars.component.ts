@@ -21,6 +21,8 @@ export class SearchBarsComponent implements OnInit {
   locations = [];
   temp = [];
 
+  // farzi
+
   constructor(@Inject(PLATFORM_ID) private platform: Object, private fb: FormBuilder, private service: SearchingService) { }
 
   ngOnInit() {
