@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { URLs } from './urls';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin, of } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
@@ -9,9 +9,13 @@ import { flatMap } from 'rxjs/operators';
 })
 export class SearchingService {
   url: URLs;
+  header: HttpHeaders;
 
   constructor(private http: HttpClient) {
     this.url = new URLs();
+    this.header = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*'
+    });
   }
 
   /*getProducts(term: string) {
@@ -19,23 +23,23 @@ export class SearchingService {
   }*/
 
   getAllProducts() {
-    return this.http.get(this.url.prefix + this.url.allProducts);
+    return this.http.get(this.url.prefix + this.url.allProducts, {headers: this.header});
   }
 
   getAllMerchants() {
-    return this.http.get(this.url.prefix + this.url.allMerchants);
+    return this.http.get(this.url.prefix + this.url.allMerchants, {headers: this.header});
   }
 
   getAllCategories() {
-    return this.http.get(this.url.prefix + this.url.allCategories);
+    return this.http.get(this.url.prefix + this.url.allCategories, {headers: this.header});
   }
 
   getAllStores() {
-    return this.http.get(this.url.prefix + this.url.allStores);
+    return this.http.get(this.url.prefix + this.url.allStores, {headers: this.header});
   }
 
   getMerchantProducts(name: string) {
-    return this.http.get(this.url.prefix + this.url.merchantByName + name).pipe(
+    return this.http.get(this.url.prefix + this.url.merchantByName + name, {headers: this.header}).pipe(
       flatMap((val: any) => {
         console.log(val);
         return forkJoin(
@@ -48,7 +52,7 @@ export class SearchingService {
   }
 
   getCategoryProducts(name: string) {
-    return this.http.get(this.url.prefix + this.url.categoryByName + name).pipe(
+    return this.http.get(this.url.prefix + this.url.categoryByName + name, {headers: this.header}).pipe(
       flatMap((val: any) => {
         console.log(val);
         return forkJoin(
@@ -61,7 +65,7 @@ export class SearchingService {
   }
 
   getStoreProducts(name: string) {
-    return this.http.get(this.url.prefix + this.url.storeByName + name).pipe(
+    return this.http.get(this.url.prefix + this.url.storeByName + name, {headers: this.header}).pipe(
       flatMap((val: any) => {
         console.log(val);
         return forkJoin(
@@ -75,7 +79,7 @@ export class SearchingService {
 
   getDetailsForProductPage(term: string) {
     return forkJoin(
-      this.http.get(this.url.prefix + this.url.productByName + term),
+      this.http.get(this.url.prefix + this.url.productByName + term, {headers: this.header}),
       this.getAllStores()
     );
   }
