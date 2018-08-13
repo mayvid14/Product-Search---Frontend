@@ -9,7 +9,7 @@ import { Store } from './store';
 export class PriceSortPipe implements PipeTransform {
   constructor(private service: GetPriceService) { }
 
-  transform(array: Product[], stores: Store[], ascending: Boolean): any[] {
+  transform(array: Product[], stores: Store[], ascending: Boolean): Product[] {
     if (ascending) {
       return array.sort((a, b) => this.numComp(
         this.service.salePriceAndPriceInStore(stores, a).salePrice,
