@@ -7,6 +7,7 @@ import { Product } from '../product';
 import { Merchant } from '../merchant';
 import { Category } from '../category';
 import { Store } from '../store';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-search-bars',
@@ -28,21 +29,23 @@ export class SearchBarsComponent implements OnInit {
       location: ['']
     });
 
-    fromEvent(document.getElementById('src'), 'input').pipe(
-      map((val: any) => val.target.value),
-      map(val => val.trim().toLowerCase()),
-      distinctUntilChanged(),
-      debounceTime(750),
-      tap(val => console.log(val)),
-    ).subscribe(val => {
-      this.options.splice(0);
-      this.temp.forEach(e => {
-        if (e.name.toLowerCase().indexOf(val) >= 0) {
-          this.options.push(e);
-        }
+    if (isPlatformBrowser) {
+      fromEvent(document.getElementById('src'), 'input').pipe(
+        map((val: any) => val.target.value),
+        map(val => val.trim().toLowerCase()),
+        distinctUntilChanged(),
+        debounceTime(750),
+        tap(val => console.log(val)),
+      ).subscribe(val => {
+        this.options.splice(0);
+        this.temp.forEach(e => {
+          if (e.name.toLowerCase().indexOf(val) >= 0) {
+            this.options.push(e);
+          }
+        });
+        this.options.splice(5);
       });
-      this.options.splice(5);
-    });
+    }
 
     // TODO: Location search bar
 
