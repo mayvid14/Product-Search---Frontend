@@ -5,12 +5,14 @@ import { enableProdMode } from '@angular/core';
 
 import * as express from 'express';
 import { join } from 'path';
+// import * as cors from 'cors';
 
 // Faster server renders w/ Prod mode
 enableProdMode();
 
 // Express server
 const app = express();
+// const router = express.Router();
 
 const PORT = process.env.PORT || 8080;
 const DIST_FOLDER = join(process.cwd(), 'dist');
@@ -26,6 +28,17 @@ app.engine('html', ngExpressEngine({
     provideModuleMap(LAZY_MODULE_MAP)
   ]
 }));
+
+// const options: cors.CorsOptions = {
+//   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+//   credentials: false,
+//   methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+//   origin: 'http://52.72.55.178:8080',
+//   preflightContinue: true
+// };
+
+// router.use(cors(options));
+// router.options('*', cors(options));
 
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
