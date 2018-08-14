@@ -42,21 +42,21 @@ describe('SearchingService', () => {
     httpMock.verify();
   }));
 
-  it('should return all merchants', inject([SearchingService], (service: SearchingService) => {
-    const merchants: Merchant[] = [
-      { id: 1, name: 'merc', feeds: [], displayName: 'Merc1' },
-      { id: 2, name: 'Product 2', rank: 2, feeds: [] },
-      { id: 3, name: 'Product 3', rank: 3, feeds: [] },
-      { id: 4, name: 'Product 4', rank: 4, feeds: [] },
-      { id: 5, name: 'Product 5', rank: 5, feeds: [] },
-    ];
+  // it('should return all merchants', inject([SearchingService], (service: SearchingService) => {
+  //   const merchants: Merchant[] = [
+  //     { id: 1, name: 'merc', feeds: [], displayName: 'Merc1' },
+  //     { id: 2, name: 'Product 2', rank: 2, feeds: [] },
+  //     { id: 3, name: 'Product 3', rank: 3, feeds: [] },
+  //     { id: 4, name: 'Product 4', rank: 4, feeds: [] },
+  //     { id: 5, name: 'Product 5', rank: 5, feeds: [] },
+  //   ];
 
-    service.getAllProducts().subscribe((res: Product[]) => {
-      expect(res.length).toEqual(5);
-    });
+  //   service.getAllProducts().subscribe((res: Product[]) => {
+  //     expect(res.length).toEqual(5);
+  //   });
 
-    const allProducts = httpMock.expectOne(url.prefix + url.allProducts);
-    allProducts.flush(products);
-    httpMock.verify();
-  }));
+  //   const allProducts = httpMock.expectOne(url.prefix + url.allProducts);
+  //   allProducts.flush(products);
+  //   httpMock.verify();
+  // }));
 });
