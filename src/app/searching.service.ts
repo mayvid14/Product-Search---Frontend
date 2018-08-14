@@ -23,23 +23,23 @@ export class SearchingService {
   }*/
 
   getAllProducts() {
-    return this.http.get(this.url.prefix + this.url.allProducts, {headers: this.header});
+    return this.http.get(this.url.prefix + this.url.allProducts);
   }
 
   getAllMerchants() {
-    return this.http.get(this.url.prefix + this.url.allMerchants, {headers: this.header});
+    return this.http.get(this.url.prefix + this.url.allMerchants);
   }
 
   getAllCategories() {
-    return this.http.get(this.url.prefix + this.url.allCategories, {headers: this.header});
+    return this.http.get(this.url.prefix + this.url.allCategories);
   }
 
   getAllStores() {
-    return this.http.get(this.url.prefix + this.url.allStores, {headers: this.header});
+    return this.http.get(this.url.prefix + this.url.allStores);
   }
 
   getMerchantProducts(name: string) {
-    return this.http.get(this.url.prefix + this.url.merchantByName + name, {headers: this.header}).pipe(
+    return this.http.get(this.url.prefix + this.url.merchantByName + name).pipe(
       flatMap((val: any) => {
         console.log(val);
         return forkJoin(
@@ -52,7 +52,7 @@ export class SearchingService {
   }
 
   getCategoryProducts(name: string) {
-    return this.http.get(this.url.prefix + this.url.categoryByName + name, {headers: this.header}).pipe(
+    return this.http.get(this.url.prefix + this.url.categoryByName + name).pipe(
       flatMap((val: any) => {
         console.log(val);
         return forkJoin(
@@ -65,7 +65,7 @@ export class SearchingService {
   }
 
   getStoreProducts(name: string) {
-    return this.http.get(this.url.prefix + this.url.storeByName + name, {headers: this.header}).pipe(
+    return this.http.get(this.url.prefix + this.url.storeByName + name).pipe(
       flatMap((val: any) => {
         console.log(val);
         return forkJoin(
@@ -79,7 +79,7 @@ export class SearchingService {
 
   getDetailsForProductPage(term: string) {
     return forkJoin(
-      this.http.get(this.url.prefix + this.url.productByName + term, {headers: this.header}),
+      this.http.get(this.url.prefix + this.url.productByName + term),
       this.getAllStores()
     );
   }
