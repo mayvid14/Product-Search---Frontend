@@ -1,13 +1,13 @@
 import { Feed } from './feed';
 
 export interface Product {
-    color: string;
-    createdAt: Date;
-    description: string;
-    feeds: Feed[];
+    color?: string;
+    createdAt?: Date;
+    description?: string;
+    feeds?: Feed[];
     id: number;
-    imageUrl: string;
+    imageUrl?: string;
     name: string;
     rank: number;
-    size: string;
+    size?: string;
 }

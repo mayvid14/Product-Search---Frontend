@@ -3,14 +3,14 @@ import { Product } from './product';
 import { Store } from './store';
 
 export interface Merchant {
-    createdAt: Date;
+    createdAt?: Date;
     displayName: string;
-    feeds: Feed[];
+    feeds?: Feed[];
     id: number;
-    mailId: string;
+    mailId?: string;
     mobileNo: string;
     name: string;
-    products: Product[];
-    status: string;
-    stores: Store[];
+    products?: Product[];
+    status?: string;
+    stores?: Store[];
 }
