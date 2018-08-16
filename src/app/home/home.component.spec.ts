@@ -8,6 +8,7 @@ import { MatModule } from '../mat/mat.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxJsonLdModule } from '@ngx-lite/json-ld';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -26,7 +27,8 @@ describe('HomeComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         HttpClientTestingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        NgxJsonLdModule
       ]
     })
       .compileComponents();

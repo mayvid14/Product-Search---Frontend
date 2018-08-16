@@ -9,6 +9,7 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxJsonLdModule } from '@ngx-lite/json-ld';
 
 describe('ProductPageComponent', () => {
   let component: ProductPageComponent;
@@ -27,7 +28,8 @@ describe('ProductPageComponent', () => {
         AgmCoreModule,
         RouterTestingModule,
         HttpClientTestingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        NgxJsonLdModule
       ],
       providers: [MapsAPILoader]
     })

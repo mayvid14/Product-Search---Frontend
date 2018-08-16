@@ -16,7 +16,7 @@ export class RequestCacheService {
 
     // Don't observe expired keys
     const now = new Date();
-    if (expires && expires.getTime() < now.getTime()) {
+    if (expires && expires.getTime() <= now.getTime()) {
       this.cache.delete(key);
       return null;
     }

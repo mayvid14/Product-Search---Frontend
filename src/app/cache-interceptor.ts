@@ -26,7 +26,7 @@ export class CacheInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             tap(event => {
                 if (event instanceof HttpResponse) {
-                    this.cache.set(req.url, event, 10);
+                    this.cache.set(req.url, event, 1000);
                 }
             })
         );

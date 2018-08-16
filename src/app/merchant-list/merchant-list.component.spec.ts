@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MerchantListComponent } from './merchant-list.component';
 import { MatModule } from '../mat/mat.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgxJsonLdModule } from '@ngx-lite/json-ld';
 
 describe('MerchantListComponent', () => {
   let component: MerchantListComponent;
@@ -13,7 +14,8 @@ describe('MerchantListComponent', () => {
       declarations: [ MerchantListComponent ],
       imports: [
         MatModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        NgxJsonLdModule
       ]
     })
     .compileComponents();

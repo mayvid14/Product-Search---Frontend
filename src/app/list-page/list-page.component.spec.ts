@@ -10,6 +10,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { PriceSortPipe } from '../price-sort.pipe';
 import { ShowAvailablePipe } from '../show-available.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxJsonLdModule } from '@ngx-lite/json-ld';
 
 describe('ListPageComponent', () => {
   let component: ListPageComponent;
@@ -28,7 +29,8 @@ describe('ListPageComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         HttpClientTestingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        NgxJsonLdModule
       ],
       providers: [
         PriceSortPipe,
