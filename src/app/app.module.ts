@@ -22,6 +22,9 @@ import { GoogleMapComponent } from './google-map/google-map.component';
 import { AgmCoreModule } from '@agm/core';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { NgxJsonLdModule } from '@ngx-lite/json-ld';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CacheInterceptor } from './cache-interceptor';
+import { RequestCacheService } from './request-cache.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,12 @@ import { NgxJsonLdModule } from '@ngx-lite/json-ld';
     }),
     NgxJsonLdModule,
   ],
-  providers: [PriceSortPipe, ShowAvailablePipe],
+  providers: [
+    RequestCacheService,
+    PriceSortPipe,
+    ShowAvailablePipe,
+    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

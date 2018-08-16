@@ -41,7 +41,6 @@ export class SearchingService {
   getMerchantProducts(name: string) {
     return this.http.get(this.url.prefix + this.url.merchantByName + name).pipe(
       flatMap((val: any) => {
-        console.log(val);
         return forkJoin(
           of(val.products),
           of(val.name),
@@ -54,7 +53,6 @@ export class SearchingService {
   getCategoryProducts(name: string) {
     return this.http.get(this.url.prefix + this.url.categoryByName + name).pipe(
       flatMap((val: any) => {
-        console.log(val);
         return forkJoin(
           of(val[0].products),
           of(val[0].name),
@@ -67,7 +65,6 @@ export class SearchingService {
   getStoreProducts(name: string) {
     return this.http.get(this.url.prefix + this.url.storeByName + name).pipe(
       flatMap((val: any) => {
-        console.log(val);
         return forkJoin(
           this.searchStoreProducts(val[0].feeds),
           of(val[0].name),
