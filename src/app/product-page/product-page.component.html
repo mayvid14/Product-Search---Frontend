@@ -6,6 +6,7 @@
   </mat-toolbar>
 </div>
 <div fxLayout="row" fxLayoutAlign="center">
+  <ngx-json-ld [json]="productLd"></ngx-json-ld>
   <div fxFlex="80%" class="navig">
     <a [href]="'/store/' + selectedStore.name" *ngIf="selectedStore">&#9664; See more from {{selectedStore.name}}</a>
     <a [href]="'/'" *ngIf="!selectedStore">&#9664; Go back to home</a>

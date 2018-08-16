@@ -113,10 +113,8 @@ describe('SearchingService', () => {
 
     service.getMerchantProducts('merc').subscribe((res: any[]) => {
       expect(res.length).toEqual(3);
-      expect(res[0]).toBe(jasmine.arrayContaining([]));
       expect(res[0].length).toEqual(3);
       expect(res[1]).toEqual('Merchant');
-      expect(res[2]).toBe(jasmine.arrayContaining([]));
       expect(res[2].length).toEqual(2);
     });
 

@@ -34,6 +34,7 @@
     "@angular/service-worker": "^6.0.3",
     "@nguniversal/express-engine": "^6.0.0",
     "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
+    "@ngx-lite/json-ld": "^0.4.2",
     "@types/googlemaps": "^3.30.11",
     "core-js": "^2.5.4",
     "cors": "^2.8.4",

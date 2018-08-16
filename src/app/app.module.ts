@@ -21,6 +21,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { AgmCoreModule } from '@agm/core';
 import { CategoryListComponent } from './category-list/category-list.component';
+import { NgxJsonLdModule } from '@ngx-lite/json-ld';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CategoryListComponent } from './category-list/category-list.component';
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: ''
-    })
+    }),
+    NgxJsonLdModule,
   ],
   providers: [PriceSortPipe, ShowAvailablePipe],
   bootstrap: [AppComponent]

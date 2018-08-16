@@ -19,6 +19,7 @@ export class ProductPageComponent implements OnInit {
   quantity: number;
   cont: Store[] = [];
   selectedStore: Store;
+  productLd = {};
 
   constructor(private route: ActivatedRoute, private service: SearchingService, private pricer: GetPriceService) { }
 
@@ -46,6 +47,7 @@ export class ProductPageComponent implements OnInit {
         this.cont = this.productStores();
         this.selectedStore = this.cont ? this.cont[0] : null;
         this.quantity = this.getQuantity() || 0;
+        this.productLd = this.initLd();
       });
     });
   }
@@ -58,6 +60,16 @@ export class ProductPageComponent implements OnInit {
       }
     });
     return found;
+  }
+
+  private initLd() {
+    return {
+      '@context': 'http://www.schema.org',
+      '@type': 'product',
+      'name': this.product.name,
+      'image': this.product.imageUrl,
+      'description': this.product.description
+    };
   }
 
   getQuantity() {

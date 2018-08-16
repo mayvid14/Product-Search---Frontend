@@ -20,6 +20,7 @@ export class ListPageComponent implements OnInit {
   stores: Store[] = [];
   show: Boolean;
   temp: Product[] = [];
+  productsLd = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -45,6 +46,7 @@ export class ListPageComponent implements OnInit {
         this.head = el[1];
         this.stores = el[2];
         this.temp = this.products;
+        this.productsLd = this.initLd();
       });
     } else if (term === 'category') {
       this.service.getCategoryProducts(this.head).subscribe((el: any[]) => {
@@ -52,6 +54,7 @@ export class ListPageComponent implements OnInit {
         this.head = el[1];
         this.stores = el[2];
         this.temp = this.products;
+        this.productsLd = this.initLd();
       });
     } else if (term === 'store') {
       this.service.getStoreProducts(this.head).subscribe((el: any[]) => {
@@ -59,6 +62,7 @@ export class ListPageComponent implements OnInit {
         this.head = el[1];
         this.stores = el[2];
         this.temp = this.products;
+        this.productsLd = this.initLd();
       });
     }
   }
@@ -76,6 +80,29 @@ export class ListPageComponent implements OnInit {
       this.temp = object.is;
     }
     this.show = !this.show;
+  }
+
+  initLd() {
+    const list = [];
+    let index = 0;
+    this.products.forEach(product => {
+      list.push({
+        '@type': 'ListItem',
+        'position': ++index,
+        'item': {
+          '@type': 'Product',
+          'url': 'http://184.72.75.108:8080/product/' + encodeURI(product.name),
+          'name': product.name
+        }
+      });
+    });
+    return {
+      '@context': 'http://schema.org',
+      '@type': 'ItemList',
+      'name': 'Products',
+      'description': 'A list of products',
+      'itemListElement': list
+    };
   }
 
 }
