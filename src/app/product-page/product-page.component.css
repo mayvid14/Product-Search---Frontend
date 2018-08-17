@@ -33,3 +33,12 @@ mat-card{
 .oos {
     color: #dc143c;
 }
+
+a{
+    text-decoration: none;
+}
+
+.minprice{
+    transform: scale(0.8);
+    color: #454545
+}

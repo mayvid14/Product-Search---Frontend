@@ -12,6 +12,8 @@ import {
   MatCardModule,
   MatBadgeModule,
   MatProgressSpinnerModule,
+  MatListModule,
+  MatTooltipModule,
 } from '@angular/material';
 
 @NgModule({
@@ -27,7 +29,9 @@ import {
     MatGridListModule,
     MatCardModule,
     MatBadgeModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatListModule,
+    MatTooltipModule
   ],
   exports: [
     MatButtonModule,
@@ -40,7 +44,9 @@ import {
     MatGridListModule,
     MatCardModule,
     MatBadgeModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatListModule,
+    MatTooltipModule
   ],
   declarations: []
 })

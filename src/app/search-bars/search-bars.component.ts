@@ -23,7 +23,7 @@ export class SearchBarsComponent implements OnInit {
 
   // farzi
 
-  constructor(@Inject(PLATFORM_ID) private platform: Object, private fb: FormBuilder, private service: SearchingService) { }
+  constructor( @Inject(PLATFORM_ID) private platform: Object, private fb: FormBuilder, private service: SearchingService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -82,20 +82,22 @@ export class SearchBarsComponent implements OnInit {
   }
 
   search() {
-    if (this.type === 'home') {
-      let found = false;
-      this.service.getAllMerchants().subscribe((val: Merchant[]) => {
-        val.forEach(merchant => {
-          if (merchant.displayName === this.form.value.search) {
-            found = true;
-          }
+    if (this.form.valid) {
+      if (this.type === 'home') {
+        let found = false;
+        this.service.getAllMerchants().subscribe((val: Merchant[]) => {
+          val.forEach(merchant => {
+            if (merchant.displayName === this.form.value.search) {
+              found = true;
+            }
+          });
+          found ?
+            window.location.href = '/merchant/' + encodeURI(this.form.value.search) :
+            window.location.href = '/category/' + encodeURI(this.form.value.search);
         });
-        found ?
-          window.location.href = '/merchant/' + encodeURI(this.form.value.search) :
-          window.location.href = '/category/' + encodeURI(this.form.value.search);
-      });
-    } else {
-      window.location.href = '/' + this.type + '/' + encodeURI(this.form.value.search);
+      } else {
+        window.location.href = '/' + this.type + '/' + encodeURI(this.form.value.search);
+      }
     }
   }
 }

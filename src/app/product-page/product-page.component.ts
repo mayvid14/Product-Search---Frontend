@@ -15,12 +15,14 @@ export class ProductPageComponent implements OnInit {
   product: Product;
   stores: Store[] = [];
   price: number;
+  minprice: number;
   count: number;
   quantity: number;
   cont: Store[] = [];
   selectedStore: Store;
   productLd = {};
   prodLoaded = false;
+  showError = false;
 
   constructor(private route: ActivatedRoute, private service: SearchingService, private pricer: GetPriceService) { }
 
@@ -35,7 +37,7 @@ export class ProductPageComponent implements OnInit {
         this.product = el[0];
 
         this.stores = el[1];
-        this.price = this.pricer.salePriceAndPriceInStore(this.stores, this.product).salePrice;
+        this.minprice = this.pricer.salePriceAndPriceInStore(this.stores, this.product).salePrice;
         this.count = 0;
         this.stores.forEach(store => {
           const feedArr = store.feeds;
@@ -47,8 +49,11 @@ export class ProductPageComponent implements OnInit {
         });
         this.cont = this.productStores();
         this.selectedStore = this.cont ? this.cont[0] : null;
+        this.price = this.pricer.salePriceAndPriceInStore(this.selectedStore ? [this.selectedStore] : [], this.product).salePrice;
         this.quantity = this.getQuantity() || 0;
         this.productLd = this.initLd();
+      }, (err) => {
+        this.showError = true;
       });
     });
   }
@@ -98,6 +103,11 @@ export class ProductPageComponent implements OnInit {
 
   isFinite(price: any) {
     return isFinite(price);
+  }
+
+  changeStore(store: Store) {
+    this.selectedStore = store;
+    this.price = this.pricer.salePriceAndPriceInStore([store], this.product).salePrice;
   }
 
 }
