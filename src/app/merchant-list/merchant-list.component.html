@@ -1,3 +1,4 @@
+<!-- <mat-spinner *ngIf="!mercsLoaded"></mat-spinner> -->
 <mat-chip-list>
   <mat-chip *ngFor="let mercs of merchants" selected (click)="goto(mercs.displayName)">
     {{mercs.name}}

@@ -8,12 +8,16 @@ import { Category } from '../category';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
+  catsLoaded = false;
   categories: Category[] = [];
 
   constructor(private service: SearchingService) { }
 
   ngOnInit() {
-    this.service.getAllCategories().subscribe((val: Category[]) => this.categories = val.slice(0, 7));
+    this.service.getAllCategories().subscribe((val: Category[]) => {
+      this.categories = val.slice(0, 7);
+      this.catsLoaded = true;
+    });
   }
 
   goto(term: string) {

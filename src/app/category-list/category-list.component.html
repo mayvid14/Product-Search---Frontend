@@ -1,3 +1,4 @@
+<!-- <mat-spinner *ngIf="!catsLoaded"></mat-spinner> -->
 <mat-chip-list>
   <mat-chip *ngFor="let category of categories" selected (click)="goto(category.name)" class="enlarge">
     {{category.name}}

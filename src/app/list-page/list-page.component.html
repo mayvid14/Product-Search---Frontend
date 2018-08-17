@@ -19,10 +19,11 @@
       </h3>
     </div>
     <div fxLayout="row" fxLayoutGap="2%">
+      <!-- <mat-spinner *ngIf="!prodsLoaded"></mat-spinner> -->
       <div fxFlex="20%" *ngFor="let product of temp">
         <app-product-card [item]="product" [stores]="stores"></app-product-card>
       </div>
-      <h1 class="mat-display-3" *ngIf="products.length === 0">
+      <h1 class="mat-display-3" *ngIf="prodsLoaded && products.length === 0">
         <mat-icon>sentiment_very_dissatisfied</mat-icon> No products</h1>
       <!-- {{products | json}} -->
     </div>

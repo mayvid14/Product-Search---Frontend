@@ -14,7 +14,10 @@
 </div>
 <div fxLayout="row" fxLayoutAlign="center">
   <div fxFlex fxLayout="row" fxLayoutAlign="center">
-    <mat-card fxFlex="80%">
+      <!-- <mat-card fxFlex="80%" *ngIf="!prodLoaded">
+        <mat-spinner></mat-spinner>
+      </mat-card> -->
+    <mat-card fxFlex="80%" *ngIf="prodLoaded">
       <div fxLayout="row" fxLayoutAlign="center">
         <div fxFlex="50%" class="img-holder">
           <img [src]="product?.imageUrl || 'https://goo.gl/uVkkWs'" alt="">

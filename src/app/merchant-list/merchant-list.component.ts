@@ -8,6 +8,7 @@ import { Merchant } from '../merchant';
   styleUrls: ['./merchant-list.component.css']
 })
 export class MerchantListComponent implements OnInit {
+  mercsLoaded = false;
   merchants: Merchant[] = [];
   merchantsLd = {};
 
@@ -17,6 +18,7 @@ export class MerchantListComponent implements OnInit {
     this.service.getAllMerchants().subscribe((val: Merchant[]) => {
       this.merchants = val.slice(0, 7);
       this.merchantsLd = this.initLd();
+      this.mercsLoaded = true;
     });
   }
 

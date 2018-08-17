@@ -20,6 +20,7 @@ export class ProductPageComponent implements OnInit {
   cont: Store[] = [];
   selectedStore: Store;
   productLd = {};
+  prodLoaded = false;
 
   constructor(private route: ActivatedRoute, private service: SearchingService, private pricer: GetPriceService) { }
 
@@ -63,6 +64,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   private initLd() {
+    this.prodLoaded = true;
     return {
       '@context': 'http://www.schema.org',
       '@type': 'product',

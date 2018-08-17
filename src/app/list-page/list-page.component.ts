@@ -21,6 +21,7 @@ export class ListPageComponent implements OnInit {
   show: Boolean;
   temp: Product[] = [];
   productsLd = {};
+  prodsLoaded = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -96,6 +97,7 @@ export class ListPageComponent implements OnInit {
         }
       });
     });
+    this.prodsLoaded = true;
     return {
       '@context': 'http://schema.org',
       '@type': 'ItemList',
