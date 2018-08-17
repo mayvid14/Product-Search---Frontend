@@ -1,10 +1,18 @@
-<div fxLayout="row">
-  <mat-toolbar>
+<div fxLayout="row" fxShow fxHide.lt-md="true">
+  <mat-toolbar class="header">
     <a href="/" class="logo">Product Search</a>
-    <span fxFlex="20%"></span>
-    <div fxFlex>
-      <app-search-bars [type]="type"></app-search-bars>
-    </div>
+    <span fxFlex="10%"></span>
+    <app-search-bars [type]="type" fxFlex></app-search-bars>
+  </mat-toolbar>
+</div>
+<div fxLayout="column" fxHide fxShow.lt-md="true">
+  <mat-toolbar class="header">
+    <mat-toolbar-row>
+      <a href="/" class="logo">Product Search</a>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <app-search-bars [type]="type" fxFlex></app-search-bars>
+    </mat-toolbar-row>
   </mat-toolbar>
 </div>
 <div fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center">
@@ -13,14 +21,25 @@
     <div fxLayout="row" fxLayoutGap="5%">
       <h2 class="title">{{head}}</h2>
       <span fxFlex></span>
-      <h3 class="sub-heading-2" (click)="hide()">{{show? 'Unavailable hidden' : 'Showing unavailable'}}</h3>
+      <h3 class="sub-heading-2" (click)="hide()">Unavailable
+        <mat-icon>{{show? 'visibility_off' : 'visibility'}}</mat-icon>
+      </h3>
       <h3 class="sub-heading-2" (click)="sortByPrice()">
         Price {{ascending ? '&#9650;' : '&#9660;'}}
       </h3>
     </div>
-    <div fxLayout="row" fxLayoutGap="2%">
+    <div fxLayout="row" fxLayoutGap="2%" fxShow fxHide.lt-md="true">
       <!-- <mat-spinner *ngIf="!prodsLoaded"></mat-spinner> -->
       <div fxFlex="20%" *ngFor="let product of temp">
+        <app-product-card [item]="product" [stores]="stores"></app-product-card>
+      </div>
+      <h1 class="mat-display-3" *ngIf="prodsLoaded && products.length === 0">
+        <mat-icon>sentiment_very_dissatisfied</mat-icon> No products</h1>
+      <!-- {{products | json}} -->
+    </div>
+    <div fxLayout="column" fxLayoutGap="2%" fxHide fxShow.lt-md="true">
+      <!-- <mat-spinner *ngIf="!prodsLoaded"></mat-spinner> -->
+      <div *ngFor="let product of temp">
         <app-product-card [item]="product" [stores]="stores"></app-product-card>
       </div>
       <h1 class="mat-display-3" *ngIf="prodsLoaded && products.length === 0">
@@ -30,7 +49,11 @@
   </div>
 </div>
 <div fxLayout="row">
-  <mat-toolbar>
+  <mat-toolbar class="footer-large" fxShow fxHide.lt-md="true">
+    <!-- TODO: Add footer -->
+    <h1>Footer</h1>
+  </mat-toolbar>
+  <mat-toolbar class="footer-small" fxHide fxShow.lt-md="true">
     <!-- TODO: Add footer -->
     <h1>Footer</h1>
   </mat-toolbar>

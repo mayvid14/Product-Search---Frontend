@@ -1,8 +1,18 @@
-<div fxLayout="row">
-  <mat-toolbar>
+<div fxLayout="row" fxShow fxHide.lt-md="true">
+  <mat-toolbar class="header">
     <a href="/" class="logo">Product Search</a>
     <span fxFlex="10%"></span>
     <app-search-bars [type]="'product'" fxFlex></app-search-bars>
+  </mat-toolbar>
+</div>
+<div fxLayout="column" fxHide fxShow.lt-md="true">
+  <mat-toolbar class="header">
+    <mat-toolbar-row>
+      <a href="/" class="logo">Product Search</a>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <app-search-bars [type]="'product'" fxFlex></app-search-bars>
+    </mat-toolbar-row>
   </mat-toolbar>
 </div>
 <div fxLayout="row" fxLayoutAlign="center">
@@ -18,7 +28,7 @@
         <mat-spinner></mat-spinner>
       </mat-card> -->
     <h1 fxFlex="80%" *ngIf="showError">Item not found</h1>
-    <mat-card fxFlex="80%" *ngIf="prodLoaded">
+    <mat-card fxFlex="80%" fxShow fxHide.lt-md="true" *ngIf="prodLoaded">
       <div fxLayout="row" fxLayoutAlign="center">
         <div fxFlex="50%" class="img-holder">
           <img [src]="product?.imageUrl || 'https://goo.gl/uVkkWs'" alt="">
@@ -55,14 +65,52 @@
       <div fxLayout="column" fxLayoutAlign="center" class="description-holder">
         <h2>Product Description</h2>
         <p>{{product?.description}}</p>
-        <p><strong>Color:</strong> {{product.color}}</p>
-        <p><strong>Size:</strong> {{product.size}}</p>
+        <p>
+          <strong>Color:</strong> {{product.color}}</p>
+        <p>
+          <strong>Size:</strong> {{product.size}}</p>
+      </div>
+    </mat-card>
+
+    <mat-card fxFlex="95%" fxHide fxShow.lt-md="true" *ngIf="prodLoaded">
+      <div fxLayout="column" fxLayoutAlign="center">
+        <div class="img-holder">
+          <img [src]="product?.imageUrl || 'https://goo.gl/uVkkWs'" alt="">
+        </div>
+        <div class="desc-holder">
+          <h1>{{product?.name}}</h1>
+          <h2 class="mat-title" *ngIf="isFinite(price)">{{price | currency}}
+            <span fxFlex class="minprice">(min: {{minprice | currency}})</span>
+            <span class="mat-caption">{{quantity}} in stock</span>
+          </h2>
+          <h2 class="mat-title" *ngIf="!isFinite(price)">
+            <span class="mat-caption oos">Out of stock</span>
+          </h2>
+          <mat-nav-list>
+            <h3 mat-subheader>Stores</h3>
+            <mat-list-item *ngFor="let store of cont" (click)="changeStore(store)">
+              <mat-icon mat-list-icon>local_grocery_store</mat-icon>
+              <p mat-line>{{store.address}}</p>
+            </mat-list-item>
+          </mat-nav-list>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <app-google-map fxFlex [store]="selectedStore"></app-google-map>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center" class="description-holder">
+        <h2>Product Description</h2>
+        <p>{{product?.description}}</p>
+        <p>
+          <strong>Color:</strong> {{product.color}}</p>
+        <p>
+          <strong>Size:</strong> {{product.size}}</p>
       </div>
     </mat-card>
   </div>
 </div>
 <div fxLayout="row">
-  <mat-toolbar>
+  <mat-toolbar class="footer-small">
     <!-- TODO: Add footer -->
     <h1>Footer</h1>
   </mat-toolbar>

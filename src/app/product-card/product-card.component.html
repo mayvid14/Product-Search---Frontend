@@ -1,6 +1,6 @@
-<mat-card [ngClass]="isAvailable()" (click)="redirect()">
+<mat-card [ngClass]="isAvailable()" (click)="redirect()" fxShow fxHide.lt-md="true">
   <div class="image-holder">
-      <img [src]="item.imageUrl || 'https://goo.gl/uVkkWs'" [alt]="item.name">
+    <img [src]="item.imageUrl || 'https://goo.gl/uVkkWs'" [alt]="item.name">
   </div>
   <mat-card-content>
     <span>{{getQuantity()}} in stock</span>
@@ -9,10 +9,35 @@
       <span fxFlex></span>
       <span class="strike">{{salePriceAndPriceInStore().price | currency}}</span>
     </div>
-    <p>{{item.name}}</p>
+    <h4>{{item.name}}</h4>
     <div>
       <span fxFlex></span>
       <span>{{count === 0 ? 'No' : count}} store{{count > 1 ? 's' : ''}}</span>
     </div>
   </mat-card-content>
+</mat-card>
+
+<mat-card [ngClass]="isAvailable()" (click)="redirect()" fxHide fxShow.lt-md="true">
+  <div fxLayout="row">
+    <div fxFlex="50%">
+      <div class="image-holder">
+        <img [src]="item.imageUrl || 'https://goo.gl/uVkkWs'" [alt]="item.name">
+      </div>
+    </div>
+    <div fxFlex="50%">
+      <mat-card-content>
+        <span>{{getQuantity()}} in stock</span>
+        <div *ngIf="item.feeds.length > 0">
+          <span>{{salePriceAndPriceInStore().salePrice | currency}}</span>
+          <span fxFlex></span>
+          <span class="strike">{{salePriceAndPriceInStore().price | currency}}</span>
+        </div>
+        <h4>{{item.name}}</h4>
+        <div>
+          <span fxFlex></span>
+          <span>{{count === 0 ? 'No' : count}} store{{count > 1 ? 's' : ''}}</span>
+        </div>
+      </mat-card-content>
+    </div>
+  </div>
 </mat-card>
