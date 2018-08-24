@@ -1,3 +1,5 @@
+<ngx-json-ld [json]="productsLd">
+</ngx-json-ld>
 <div fxLayout="row" fxShow fxHide.lt-md="true">
   <mat-toolbar class="header">
     <a href="/" class="logo">Product Search</a>
@@ -16,7 +18,6 @@
   </mat-toolbar>
 </div>
 <div fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center">
-  <ngx-json-ld [json]="productsLd"></ngx-json-ld>
   <div fxFlex="80%">
     <div fxLayout="row" fxLayoutGap="5%">
       <h2 class="title">{{head}}</h2>
@@ -28,16 +29,17 @@
         Price {{ascending ? '&#9650;' : '&#9660;'}}
       </h3>
     </div>
-    <div fxLayout="row" fxLayoutGap="2%" fxShow fxHide.lt-md="true">
+    <div fxShow fxHide.lt-md="true" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" class="gridxx">
       <!-- <mat-spinner *ngIf="!prodsLoaded"></mat-spinner> -->
-      <div fxFlex="20%" *ngFor="let product of temp">
+      <div *ngFor="let product of temp">
         <app-product-card [item]="product" [stores]="stores"></app-product-card>
       </div>
       <h1 class="mat-display-3" *ngIf="prodsLoaded && products.length === 0">
         <mat-icon>sentiment_very_dissatisfied</mat-icon> No products</h1>
       <!-- {{products | json}} -->
     </div>
-    <div fxLayout="column" fxLayoutGap="2%" fxHide fxShow.lt-md="true">
+    <div fxLayout="column" fxLayoutGap="2%" fxHide fxShow.lt-md="true" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="70"
+      (scrolled)="onScroll()">
       <!-- <mat-spinner *ngIf="!prodsLoaded"></mat-spinner> -->
       <div *ngFor="let product of temp">
         <app-product-card [item]="product" [stores]="stores"></app-product-card>

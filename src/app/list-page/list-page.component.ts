@@ -22,6 +22,7 @@ export class ListPageComponent implements OnInit {
   temp: Product[] = [];
   productsLd = {};
   prodsLoaded = false;
+  start = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +47,7 @@ export class ListPageComponent implements OnInit {
         this.products = el[0];
         this.head = el[1];
         this.stores = el[2];
-        this.temp = this.products;
+        this.onScroll();
         this.productsLd = this.initLd();
       });
     } else if (term === 'category') {
@@ -54,7 +55,7 @@ export class ListPageComponent implements OnInit {
         this.products = el[0];
         this.head = el[1];
         this.stores = el[2];
-        this.temp = this.products;
+        this.onScroll();
         this.productsLd = this.initLd();
       });
     } else if (term === 'store') {
@@ -62,7 +63,7 @@ export class ListPageComponent implements OnInit {
         this.products = el[0];
         this.head = el[1];
         this.stores = el[2];
-        this.temp = this.products;
+        this.onScroll();
         this.productsLd = this.initLd();
       });
     }
@@ -81,6 +82,13 @@ export class ListPageComponent implements OnInit {
       this.temp = object.is;
     }
     this.show = !this.show;
+  }
+
+  onScroll() {
+    this.temp = this.temp.length !== 0 ?
+      this.temp.concat(this.products.slice(this.start, this.start + 7)) :
+      this.products.slice(this.start, this.start + 7);
+    this.start += 7;
   }
 
   initLd() {

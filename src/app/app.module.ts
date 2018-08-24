@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatModule } from './mat/mat.module';
@@ -10,6 +11,7 @@ import { environment } from '../environments/environment';
 import { SearchBarsComponent } from './search-bars/search-bars.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { GridModule } from '@angular/flex-layout/grid';
 import { HttpClientModule } from '@angular/common/http';
 import { MerchantListComponent } from './merchant-list/merchant-list.component';
 import { ListPageComponent } from './list-page/list-page.component';
@@ -54,6 +56,8 @@ import { RequestCacheService } from './request-cache.service';
       apiKey: ''
     }),
     NgxJsonLdModule,
+    InfiniteScrollModule,
+    GridModule
   ],
   providers: [
     RequestCacheService,

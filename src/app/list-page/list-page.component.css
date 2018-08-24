@@ -14,11 +14,26 @@ h3{
 }
 
 .footer-large {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     box-shadow: 0px -2px 3px 0px #4949492f;
 }
 
 .header{
     box-shadow: 0px 2px 3px 0px #4949492f;
+}
+
+.gridxx{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    align-content: flex-start;
+}
+
+.gridxx > * {
+    width: 20%;
+    flex: 0 0 auto;
+    margin: 2%;
 }
