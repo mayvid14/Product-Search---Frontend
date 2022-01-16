@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProductPageComponent } from './product-page.component';
 import { SearchBarsComponent } from '../search-bars/search-bars.component';
@@ -16,9 +16,9 @@ describe('ProductPageComponent', () => {
   let fixture: ComponentFixture<ProductPageComponent>;
   let mapsAPILoader;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     mapsAPILoader = new MockMapsAPILoader();
-    TestBed.overrideProvider(MapsAPILoader, { useValue: mapsAPILoader});
+    TestBed.overrideProvider(MapsAPILoader, { useValue: mapsAPILoader });
     TestBed.configureTestingModule({
       declarations: [ProductPageComponent, SearchBarsComponent, GoogleMapComponent],
       imports: [

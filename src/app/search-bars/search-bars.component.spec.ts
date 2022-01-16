@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SearchBarsComponent } from './search-bars.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,9 +10,9 @@ describe('SearchBarsComponent', () => {
   let component: SearchBarsComponent;
   let fixture: ComponentFixture<SearchBarsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchBarsComponent ],
+      declarations: [SearchBarsComponent],
       imports: [
         FormsModule,
         ReactiveFormsModule,
@@ -21,7 +21,7 @@ describe('SearchBarsComponent', () => {
         HttpClientTestingModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

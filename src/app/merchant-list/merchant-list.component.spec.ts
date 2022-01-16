@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MerchantListComponent } from './merchant-list.component';
 import { MatModule } from '../mat/mat.module';
@@ -9,16 +9,16 @@ describe('MerchantListComponent', () => {
   let component: MerchantListComponent;
   let fixture: ComponentFixture<MerchantListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MerchantListComponent ],
+      declarations: [MerchantListComponent],
       imports: [
         MatModule,
         HttpClientTestingModule,
         NgxJsonLdModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

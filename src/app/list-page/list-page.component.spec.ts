@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ListPageComponent } from './list-page.component';
 import { SearchBarsComponent } from '../search-bars/search-bars.component';
@@ -16,7 +16,7 @@ describe('ListPageComponent', () => {
   let component: ListPageComponent;
   let fixture: ComponentFixture<ListPageComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         ListPageComponent,
