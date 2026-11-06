@@ -1,31 +1,31 @@
 <ngx-json-ld [json]="homeLd" ></ngx-json-ld>
-<div fxLayout="row" fxLayoutAlign="center" class="section1">
-  <div fxLayout="column" fxLayoutAlign="center">
-    <div fxFlex="100%">
-      <div fxLayout="row" fxLayoutAlign="center">
-        <h1 class="mat-display-4" fxFlex="70%" fxShow fxHide.lt-md="true">Find great buys close to you in Singapore</h1>
-        <h1 class="mat-display-3" fxFlex="70%" fxHide fxShow.lt-md="true">Find great buys close to you in Singapore</h1>
+<div class="section1 flex flex-row justify-center">
+  <div class="flex flex-col justify-center">
+    <div class="flex-[1_1_100%] max-h-full">
+      <div class="flex flex-row justify-center">
+        <h1 class="mat-display-4 flex-[1_1_70%] max-w-[70%] max-md:hidden!">Find great buys close to you in Singapore</h1>
+        <h1 class="mat-display-3 flex-[1_1_70%] max-w-[70%] md:hidden!">Find great buys close to you in Singapore</h1>
       </div>
     </div>
-    <span fxFlex="100%"></span>
-    <div fxFlex>
-      <div fxLayout="row" fxLayoutAlign="center">
-        <app-search-bars type="home" fxFlex="80%"></app-search-bars>
+    <span class="flex-[1_1_100%] max-h-full"></span>
+    <div class="flex-1">
+      <div class="flex flex-row justify-center">
+        <app-search-bars type="home" class="flex-[1_1_80%] max-w-[80%]"></app-search-bars>
       </div>
     </div>
-    <span fxFlex></span>
+    <span class="flex-1"></span>
   </div>
 </div>
-<div fxLayout="row" fxLayoutAlign="center">
-  <mat-card fxFlex>
-    <div fxLayout="row" fxLayoutAlign="center">
+<div class="flex flex-row justify-center">
+  <mat-card class="flex-1">
+    <div class="flex flex-row justify-center">
       <app-merchant-list></app-merchant-list>
     </div>
   </mat-card>
 </div>
-<div fxLayout="row" fxLayoutAlign="center">
-  <mat-card fxFlex class="max-pad">
-    <div fxLayout="row" fxLayoutAlign="center">
+<div class="flex flex-row justify-center">
+  <mat-card class="max-pad flex-1">
+    <div class="flex flex-row justify-center">
       <app-category-list></app-category-list>
     </div>
   </mat-card>

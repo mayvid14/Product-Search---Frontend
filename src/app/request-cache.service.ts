@@ -24,7 +24,7 @@ export class RequestCacheService {
     return httpResponse;
   }
 
-  set(key, value, ttl = null) {
+  set(key, value, ttl: number | null = null) {
     if (ttl) {
       const expires = new Date();
       expires.setSeconds(expires.getSeconds() + ttl);

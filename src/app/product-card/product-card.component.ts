@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { GetPriceService } from '../get-price.service';
 import { Product } from '../product';
 import { Store } from '../store';
 
 @Component({
+  standalone: false,
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {

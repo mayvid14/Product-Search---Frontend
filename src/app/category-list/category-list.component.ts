@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { SearchingService } from '../searching.service';
 import { Category } from '../category';
 
 @Component({
+  standalone: false,
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {

@@ -1,7 +1,6 @@
-<div *ngIf="store">
-    <agm-map [latitude]="store.latitude" [longitude]="store.longitude">
-        <agm-marker [latitude]="store.latitude" [longitude]="store.longitude">
-            <agm-info-window><strong>{{store.name}}</strong> : {{store.address}}</agm-info-window>
-        </agm-marker>
-    </agm-map>
+<div *ngIf="store && isBrowser">
+    <google-map [center]="{lat: store.latitude, lng: store.longitude}">
+        <map-marker #marker="mapMarker" [position]="{lat: store.latitude, lng: store.longitude}" (mapClick)="infoWindow.open(marker)"></map-marker>
+        <map-info-window #infoWindow="mapInfoWindow"><strong>{{store.name}}</strong> : {{store.address}}</map-info-window>
+    </google-map>
 </div>

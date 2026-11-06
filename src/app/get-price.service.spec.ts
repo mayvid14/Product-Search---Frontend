@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { GetPriceService } from './get-price.service';
 import { Store } from './store';
-import { Product } from 'src/app/product';
+import { Product } from './product';
 
 describe('GetPriceService', () => {
   beforeEach(() => {

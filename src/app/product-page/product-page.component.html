@@ -1,42 +1,42 @@
-<div fxLayout="row" fxShow fxHide.lt-md="true">
+<div class="flex flex-row max-md:hidden!">
   <mat-toolbar class="header">
     <a href="/" class="logo">Product Search</a>
-    <span fxFlex="10%"></span>
-    <app-search-bars [type]="'product'" fxFlex></app-search-bars>
+    <span class="flex-[1_1_10%] max-w-[10%]"></span>
+    <app-search-bars [type]="'product'" class="flex-1"></app-search-bars>
   </mat-toolbar>
 </div>
-<div fxLayout="column" fxHide fxShow.lt-md="true">
+<div class="flex flex-col md:hidden!">
   <mat-toolbar class="header">
     <mat-toolbar-row>
       <a href="/" class="logo">Product Search</a>
     </mat-toolbar-row>
     <mat-toolbar-row>
-      <app-search-bars [type]="'product'" fxFlex></app-search-bars>
+      <app-search-bars [type]="'product'" class="flex-1"></app-search-bars>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
-<div fxLayout="row" fxLayoutAlign="center">
+<div class="flex flex-row justify-center">
   <ngx-json-ld [json]="productLd"></ngx-json-ld>
-  <div fxFlex="80%" class="navig">
+  <div class="navig flex-[1_1_80%] max-w-[80%]">
     <a [href]="'/store/' + selectedStore.name" *ngIf="selectedStore">&#9664; See more from {{selectedStore.name}}</a>
     <a [href]="'/'" *ngIf="!selectedStore">&#9664; Go back to home</a>
   </div>
 </div>
-<div fxLayout="row" fxLayoutAlign="center">
-  <div fxFlex fxLayout="row" fxLayoutAlign="center">
-    <!-- <mat-card fxFlex="80%" *ngIf="!prodLoaded">
+<div class="flex flex-row justify-center">
+  <div class="flex flex-row justify-center flex-1">
+    <!-- <mat-card *ngIf="!prodLoaded" class="flex-[1_1_80%] max-w-[80%]">
         <mat-spinner></mat-spinner>
       </mat-card> -->
-    <h1 fxFlex="80%" *ngIf="showError">Item not found</h1>
-    <mat-card fxFlex="80%" fxShow fxHide.lt-md="true" *ngIf="prodLoaded">
-      <div fxLayout="row" fxLayoutAlign="center">
-        <div fxFlex="50%" class="img-holder">
+    <h1 *ngIf="showError" class="flex-[1_1_80%] max-w-[80%]">Item not found</h1>
+    <mat-card *ngIf="prodLoaded" class="flex-[1_1_80%] max-w-[80%] max-md:hidden!">
+      <div class="flex flex-row justify-center">
+        <div class="img-holder flex-[1_1_50%] max-w-[50%]">
           <img [src]="product?.imageUrl || 'https://goo.gl/uVkkWs'" alt="">
         </div>
-        <div fxFlex="50%" class="desc-holder">
+        <div class="desc-holder flex-[1_1_50%] max-w-[50%]">
           <h1>{{product?.name}}</h1>
           <h2 class="mat-title" *ngIf="isFinite(price)">{{price | currency}}
-            <span fxFlex class="minprice">(min: {{minprice | currency}})</span>
+            <span class="minprice flex-1">(min: {{minprice | currency}})</span>
             <span class="mat-caption">{{quantity}} in stock</span>
           </h2>
           <h2 class="mat-title" *ngIf="!isFinite(price)">
@@ -53,16 +53,16 @@
           <mat-nav-list>
             <h3 mat-subheader>Stores</h3>
             <mat-list-item *ngFor="let store of cont" (click)="changeStore(store)">
-              <mat-icon mat-list-icon>local_grocery_store</mat-icon>
+              <mat-icon matListItemIcon>local_grocery_store</mat-icon>
               <p mat-line>{{store.address}}</p>
             </mat-list-item>
           </mat-nav-list>
         </div>
       </div>
-      <div fxLayout="row" fxLayoutAlign="center">
-        <app-google-map fxFlex [store]="selectedStore"></app-google-map>
+      <div class="flex flex-row justify-center">
+        <app-google-map [store]="selectedStore" class="flex-1"></app-google-map>
       </div>
-      <div fxLayout="column" fxLayoutAlign="center" class="description-holder">
+      <div class="description-holder flex flex-col justify-center">
         <h2>Product Description</h2>
         <p>{{product?.description}}</p>
         <p>
@@ -72,15 +72,15 @@
       </div>
     </mat-card>
 
-    <mat-card fxFlex="95%" fxHide fxShow.lt-md="true" *ngIf="prodLoaded">
-      <div fxLayout="column" fxLayoutAlign="center">
+    <mat-card *ngIf="prodLoaded" class="flex-[1_1_95%] max-w-[95%] md:hidden!">
+      <div class="flex flex-col justify-center">
         <div class="img-holder">
           <img [src]="product?.imageUrl || 'https://goo.gl/uVkkWs'" alt="">
         </div>
         <div class="desc-holder">
           <h1>{{product?.name}}</h1>
           <h2 class="mat-title" *ngIf="isFinite(price)">{{price | currency}}
-            <span fxFlex class="minprice">(min: {{minprice | currency}})</span>
+            <span class="minprice flex-1">(min: {{minprice | currency}})</span>
             <span class="mat-caption">{{quantity}} in stock</span>
           </h2>
           <h2 class="mat-title" *ngIf="!isFinite(price)">
@@ -89,16 +89,16 @@
           <mat-nav-list>
             <h3 mat-subheader>Stores</h3>
             <mat-list-item *ngFor="let store of cont" (click)="changeStore(store)">
-              <mat-icon mat-list-icon>local_grocery_store</mat-icon>
+              <mat-icon matListItemIcon>local_grocery_store</mat-icon>
               <p mat-line>{{store.address}}</p>
             </mat-list-item>
           </mat-nav-list>
         </div>
       </div>
-      <div fxLayout="row" fxLayoutAlign="center">
-        <app-google-map fxFlex [store]="selectedStore"></app-google-map>
+      <div class="flex flex-row justify-center">
+        <app-google-map [store]="selectedStore" class="flex-1"></app-google-map>
       </div>
-      <div fxLayout="column" fxLayoutAlign="center" class="description-holder">
+      <div class="description-holder flex flex-col justify-center">
         <h2>Product Description</h2>
         <p>{{product?.description}}</p>
         <p>
@@ -109,7 +109,7 @@
     </mat-card>
   </div>
 </div>
-<div fxLayout="row">
+<div class="flex flex-row">
   <mat-toolbar class="footer-small">
     <!-- TODO: Add footer -->
     <h1>Footer</h1>

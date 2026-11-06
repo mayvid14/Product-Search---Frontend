@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { SearchingService } from '../searching.service';
 import { Merchant } from '../merchant';
 
 @Component({
+  standalone: false,
   selector: 'app-merchant-list',
   templateUrl: './merchant-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./merchant-list.component.css']
 })
 export class MerchantListComponent implements OnInit {
