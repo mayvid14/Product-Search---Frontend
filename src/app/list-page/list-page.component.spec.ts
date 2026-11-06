@@ -6,6 +6,9 @@ import { MatModule } from '../mat/mat.module';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
+import { of } from 'rxjs';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { PriceSortPipe } from '../price-sort.pipe';
 import { ShowAvailablePipe } from '../show-available.pipe';
@@ -30,11 +33,13 @@ describe('ListPageComponent', () => {
         RouterTestingModule,
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        NgxJsonLdModule
+        NgxJsonLdModule,
+        InfiniteScrollModule
       ],
       providers: [
         PriceSortPipe,
-        ShowAvailablePipe
+        ShowAvailablePipe,
+        { provide: ActivatedRoute, useValue: { url: of([new UrlSegment('merchant', {}), new UrlSegment('test', {})]) } }
       ]
     })
       .compileComponents();

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ProductCardComponent } from './product-card.component';
 import { MatModule } from '../mat/mat.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 describe('ProductCardComponent', () => {
   let component: ForTestComponent;
@@ -29,7 +29,9 @@ describe('ProductCardComponent', () => {
 });
 
 @Component({
+  standalone: false,
   selector: 'app-for-test-component',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '<app-product-card [stores]="stores" [item]="item"></app-product-card>'
 })
 class ForTestComponent {

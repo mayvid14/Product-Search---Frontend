@@ -4,6 +4,7 @@ import { Product } from './product';
 import { Store } from './store';
 
 @Pipe({
+  standalone: false,
   name: 'priceSort'
 })
 export class PriceSortPipe implements PipeTransform {

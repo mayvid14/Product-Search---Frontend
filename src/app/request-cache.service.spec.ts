@@ -1,7 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { RequestCacheService } from './request-cache.service';
-import { HttpResponse } from '@angular/common/http';
 
 describe('RequestCacheService', () => {
   beforeEach(() => {

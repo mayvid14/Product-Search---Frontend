@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { GoogleMapComponent } from './google-map.component';
-import { AgmCoreModule } from '@agm/core';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 describe('GoogleMapComponent', () => {
   let component: GoogleMapComponent;
@@ -10,7 +10,7 @@ describe('GoogleMapComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [GoogleMapComponent],
-      imports: [AgmCoreModule],
+      imports: [GoogleMapsModule],
       providers: []
     })
       .compileComponents();

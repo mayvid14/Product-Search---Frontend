@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs/operators';
 import { SearchingService } from '../searching.service';
 import { PriceSortPipe } from '../price-sort.pipe';
 import { ShowAvailablePipe } from '../show-available.pipe';
@@ -8,8 +7,10 @@ import { Product } from '../product';
 import { Store } from '../store';
 
 @Component({
+  standalone: false,
   selector: 'app-list-page',
   templateUrl: './list-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./list-page.component.css']
 })
 export class ListPageComponent implements OnInit {

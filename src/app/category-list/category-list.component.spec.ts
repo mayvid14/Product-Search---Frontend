@@ -1,3 +1,4 @@
+import { provideZoneChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed, inject, waitForAsync } from '@angular/core/testing';
 
 import { CategoryListComponent } from './category-list.component';
@@ -22,9 +23,7 @@ describe('CategoryListComponent', () => {
         NgxJsonLdModule,
         RouterTestingModule.withRoutes([])
       ],
-      // providers: [
-      //   { provide: SearchingService, useValue: service }
-      // ]
+      providers: [provideZoneChangeDetection()]
     })
       .compileComponents();
   }));
@@ -50,7 +49,7 @@ describe('CategoryListComponent', () => {
   })));
 
   it('should render atmost 7 categories', waitForAsync(inject([SearchingService], (service: SearchingService) => {
-    const matchips = fixture.debugElement.queryAll(By.css('mat-chip'));
+    const matchips = fixture.debugElement.queryAll(By.css('mat-chip-option'));
     expect(matchips.length).toEqual(0);
     spyOn(service, 'getAllCategories').and.returnValue(of([
       { id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10 }
@@ -65,7 +64,7 @@ describe('CategoryListComponent', () => {
     spyOn(service, 'getAllCategories').and.returnValue(of([{ id: 0, name: 'play' }]));
     component.ngOnInit();
     fixture.detectChanges();
-    const chip = fixture.debugElement.queryAll(By.css('mat-chip'));
+    const chip = fixture.debugElement.queryAll(By.css('mat-chip-option'));
     chip[0].nativeElement.click();
     fixture.detectChanges();
     expect(navigateSpy).toHaveBeenCalled();

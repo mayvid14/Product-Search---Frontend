@@ -18,7 +18,7 @@ describe('SearchingService', () => {
       imports: [HttpClientTestingModule]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
+    httpMock = TestBed.inject(HttpTestingController);
     url = new URLs();
   });
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SearchingService } from '../searching.service';
 import { GetPriceService } from '../get-price.service';
@@ -7,8 +7,10 @@ import { Store } from '../store';
 import { Feed } from '../feed';
 
 @Component({
+  standalone: false,
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./product-page.component.css']
 })
 export class ProductPageComponent implements OnInit {

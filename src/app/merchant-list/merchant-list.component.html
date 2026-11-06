@@ -1,7 +1,7 @@
 <!-- <mat-spinner *ngIf="!mercsLoaded"></mat-spinner> -->
-<mat-chip-list>
-  <mat-chip *ngFor="let mercs of merchants" selected (click)="goto(mercs.displayName)">
+<mat-chip-listbox>
+  <mat-chip-option *ngFor="let mercs of merchants" selected (click)="goto(mercs.displayName)">
     {{mercs.name}}
-  </mat-chip>
-</mat-chip-list>
+  </mat-chip-option>
+</mat-chip-listbox>
 <ngx-json-ld [json]="merchantsLd"></ngx-json-ld>

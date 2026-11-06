@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Product } from './product';
 
 @Pipe({
+  standalone: false,
   name: 'showAvailable'
 })
 export class ShowAvailablePipe implements PipeTransform {
